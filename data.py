@@ -3,7 +3,7 @@ import fitz  # PyMuPDF
 import os
 from PIL import Image
 import io
-from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
+from transformers import Qwen3VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
 import torch
 
@@ -33,20 +33,37 @@ Output all detected objects in JSON format with the following structure:
 """.strip()
 
 class PDFImageProcessorWithContext:
-    def __init__(self, model_name="Qwen/Qwen2.5-VL-3B-Instruct"):
+    def __init__(self, model_name="Qwen/Qwen3-VL-32B-Instruct"):
         """
-        初始化Qwen-VL模型和处理器
+        使用 transformers 加载 Qwen VL 模型。
+        
+        Args:
+            model_name (str): HuggingFace 模型名称，默认为 "Qwen/Qwen3-VL-32B-Instruct"
+                           可选: 
+                           - "Qwen/Qwen3-VL-32B-Instruct" (最强，需要 ~64GB 显存)
+                           - "Qwen/Qwen2-VL-7B-Instruct" (中等)
+                           - "Qwen/Qwen2-VL-2B-Instruct" (更小更快)
         """
-        print("正在加载Qwen-VL模型...")
+        print(f"正在加载 Qwen VL 模型: {model_name}")
+        self.model_name = model_name
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         
         # 加载模型和处理器
+        print("加载 processor...")
         self.processor = AutoProcessor.from_pretrained(model_name)
-        self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-            model_name, torch_dtype="auto", device_map="auto"
+        
+        print(f"加载模型到 {self.device}...")
+        # 对于 32B 模型，使用 8bit 量化以节省显存
+        
+        print("检测到大模型，启用 8bit 量化...")
+        self.model = Qwen3VLForConditionalGeneration.from_pretrained(
+            model_name,
+            torch_dtype=torch.float16,
+            device_map="auto",
+            load_in_8bit=True  # 使用 8bit 量化
         )
-
-        print(f"模型加载完成，运行在: {self.device}")
+        
+        print(f"✓ 模型加载成功！设备: {self.device}")
     
     def extract_images_from_pdf(self, pdf_path, output_dir="extracted_images"):
         """
@@ -128,64 +145,80 @@ class PDFImageProcessorWithContext:
         print(f"图片提取完成! 共提取 {len(image_info_list)} 张图片到目录: {output_dir}")
         return page_list, image_info_list
     
-    def build_message(self, image_path, pre_page_path, next_page_path, cur_page_path):
-
+    
+    
+    def build_messages(self, image_path, pre_page_path, next_page_path, cur_page_path):
+        """构建多图像消息格式"""
         messages = [
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "image",
-                        "image": image_path,
-                    },
-                    {
-                        "type": "image",
-                        "image": pre_page_path,
-                    },
-                    {
-                        "type": "image",
-                        "image": cur_page_path
-                    },
-                    {
-                        "type": "image",
-                        "image": next_page_path,
-                    },
-                    {"type": "text", 
-                     "text": IMAGE_ANALYSIS_INSTRUCTION},
+                    {"type": "image", "image": image_path},
+                    {"type": "image", "image": pre_page_path},
+                    {"type": "image", "image": cur_page_path},
+                    {"type": "image", "image": next_page_path},
+                    {"type": "text", "text": IMAGE_ANALYSIS_INSTRUCTION},
                 ],
             }
         ]
         return messages
     
-    def generate_image_description(self, image_path, pre_page_path, next_page_path, cur_page_path ):
-
-        messages = self.build_message(image_path, pre_page_path, next_page_path, cur_page_path)
-
-        text = self.processor.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-        image_inputs, video_inputs = process_vision_info(messages)
-        inputs = self.processor(
-            text=[text],
-            images=image_inputs,
-            videos=video_inputs,
-            padding=True,
-            return_tensors="pt",
-        )
-        inputs = inputs.to("cuda")
-
-        # Inference: Generation of the output
-        generated_ids = self.model.generate(**input) # max_new_tokens=128
-        generated_ids_trimmed = [
-            out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-        ]
-        output_text = self.processor.batch_decode(
-            generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-        )
-
-
-        print(output_text)
-        return output_text
+    def generate_image_description(self, image_path, pre_page_path, next_page_path, cur_page_path):
+        """
+        使用 Qwen3-VL 生成图片描述
+        """
+        try:
+            print(f"正在分析图片: {image_path}")
+            
+            # 构建消息
+            messages = self.build_messages(image_path, pre_page_path, next_page_path, cur_page_path)
+            
+            # 应用聊天模板
+            text = self.processor.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+            
+            # 处理视觉信息
+            image_inputs, video_inputs = process_vision_info(messages)
+            
+            # 准备输入
+            inputs = self.processor(
+                text=[text],
+                images=image_inputs,
+                videos=video_inputs,
+                padding=True,
+                return_tensors="pt",
+            )
+            inputs = inputs.to(self.device)
+            
+            # 生成输出
+            with torch.no_grad():
+                generated_ids = self.model.generate(
+                    **inputs,
+                    temperature=0.3, # 控制生成文本的随机性 越大越创造
+                    max_new_tokens=1024,
+                    do_sample=True
+                )
+            
+            # 解码输出
+            generated_ids_trimmed = [
+                out_ids[len(in_ids):] 
+                for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+            ]
+            output_text = self.processor.batch_decode(
+                generated_ids_trimmed,
+                skip_special_tokens=True,
+                clean_up_tokenization_spaces=False
+            )[0]
+            
+            print(f"✓ 分析完成")
+            return output_text
+            
+        except Exception as e:
+            print(f"✗ 生成描述失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
 
     
     def process_image_with_context(self, pdf_path, pdf_name, part, output_json="image_descriptions.json"):
@@ -195,37 +228,57 @@ class PDFImageProcessorWithContext:
                 
         for i, img_info in enumerate(images_info):
             image_path = img_info["image_path"]
-            page_num = img_info["page_num"]
-            pre_page_path = page_list[page_num-1]["page_path"]
+            page_num = img_info["page_number"]
+            
+            # 处理页码范围（避免超出边界）
+            pre_page_idx = max(0, page_num - 1)
+            next_page_idx = min(len(page_list) - 1, page_num + 1)
+            
+            pre_page_path = page_list[pre_page_idx]["page_path"]
             cur_page_path = page_list[page_num]["page_path"]
-            next_page_path = page_list[page_num+1]["page_path"]
-            image_json = self.generate_image_description(image_path, pre_page_path, next_page_path, cur_page_path)
+            next_page_path = page_list[next_page_idx]["page_path"]
+            
+            # 生成图片描述
+            description_json = self.generate_image_description(
+                image_path, pre_page_path, next_page_path, cur_page_path
+            )
+            
+            if description_json is None:
+                print(f"⚠ 跳过第 {page_num} 页的图片 {img_info['image_index']}")
+                continue
+            
+            # 尝试解析 JSON 结果
+            try:
+                parsed_json = json.loads(description_json)
+                image_name = parsed_json[0].get("name", "Unknown") if isinstance(parsed_json, list) and parsed_json else "Unknown"
+                image_desc = parsed_json[0].get("description", description_json) if isinstance(parsed_json, list) and parsed_json else description_json
+            except json.JSONDecodeError:
+                # 如果不是 JSON 格式，直接使用原文本
+                image_name = "Analysis Result"
+                image_desc = description_json
 
             record = {
-                
                 "image_id": f"page_{img_info['page_number']}_img_{img_info['image_index']}",
-                "image_name": image_json.name,
+                "image_name": image_name,
                 "page_number": img_info["page_number"],
                 "image_index": img_info["image_index"],
                 "image_path": img_info["image_path"],
                 "filename": pdf_name,
-                "description": image_json.description,
+                "description": image_desc,
                 "part": part
-
-
             }
 
             results.append(record)
+            print(f"✓ 处理完成: {record['image_id']}")
 
         with open(output_json, 'w', encoding='utf-8') as f:
-
             json.dump(results, f, ensure_ascii=False, indent=2, default=str)
                 
-        print(f"处理完成! 结果已保存到: {output_json}")
+        print(f"✓ 所有处理完成! 结果已保存到: {output_json}")
         return results
 
 
 if __name__ == "__main__":
     processor = PDFImageProcessorWithContext()
     pdf_file = "sample.pdf"  # 替换为你的PDF文件路径
-    results = processor.process_image_with_context(pdf_path=pdf_file,output_json="qwen_vl_descriptions_with_context.json")
+    results = processor.process_image_with_context(pdf_path=pdf_file,output_json="qwen_vl_descriptions_with_context.json", pdf_name="sample.pdf", part="Part 1")
