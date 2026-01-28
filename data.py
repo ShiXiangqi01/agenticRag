@@ -33,7 +33,7 @@ Output all detected objects in JSON format with the following structure:
 """.strip()
 
 class PDFImageProcessorWithContext:
-    def __init__(self, model_name="Qwen/Qwen3-VL-32B-Instruct"):
+    def __init__(self, model_name="Qwen/Qwen3-VL-30B-A3B-Instruct"):
         """
         使用 transformers 加载 Qwen VL 模型。
         
@@ -59,9 +59,12 @@ class PDFImageProcessorWithContext:
         self.model = Qwen3VLForConditionalGeneration.from_pretrained(
             model_name,
             torch_dtype=torch.float16,
-            device_map="auto",
-            load_in_8bit=True  # 使用 8bit 量化
+            #device_map="auto",
+            #load_in_8bit=True,
         )
+        
+        # ✓ 确保模型移到同一设备
+        self.model = self.model.to(self.device)
         
         print(f"✓ 模型加载成功！设备: {self.device}")
     
@@ -78,6 +81,7 @@ class PDFImageProcessorWithContext:
 
         # 创建输出目录
         os.makedirs(output_dir, exist_ok=True)
+        os.makedirs("pages", exist_ok=True)  # 创建 pages 目录
 
         # 打开PDF文件
         doc = fitz.open(pdf_path)
@@ -92,9 +96,11 @@ class PDFImageProcessorWithContext:
         # 遍历每一页
         for page_num in range(len(doc)):
             page_path = f"pages/page_{page_num}.jpg"
+            print(f"-------------{page_path}")
             page = doc.load_page(page_num)
             pix = page.get_pixmap(matrix=fitz.Matrix(1.5, 1.5))  # 1.5倍分辨率
             pix.save(page_path)
+            print(f"保存页面图片: {page_path}")
             page_list.append({
                 "page_number": page_num,
                 "page_path": page_path,
@@ -280,5 +286,5 @@ class PDFImageProcessorWithContext:
 
 if __name__ == "__main__":
     processor = PDFImageProcessorWithContext()
-    pdf_file = "sample.pdf"  # 替换为你的PDF文件路径
-    results = processor.process_image_with_context(pdf_path=pdf_file,output_json="qwen_vl_descriptions_with_context.json", pdf_name="sample.pdf", part="Part 1")
+    pdf_file = "Stretching/Neck.pdf"  # 替换为你的PDF文件路径
+    results = processor.process_image_with_context(pdf_path=pdf_file,output_json="qwen_vl_descriptions_with_context.json", pdf_name="Stretching.pdf", part="Neck")
