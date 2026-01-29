@@ -10,13 +10,13 @@ import torch
 IMAGE_ANALYSIS_INSTRUCTION = """
 # Your Role
 
-You are an expert Pdf analysis assistant.
+You are an expert Pdf analysis and OCR assistant.
 
 # Your Task
 
-You will receive three image.The first image is the target image; the next three images are from the page before, the same page as, and the page after the target image, respectively.
-You should accurately extract the text related to the target image based on the context provided by the other three images.
-You also need to extract the name or title of the target image, if no name or title is found, you should give a reasonable guess according to the context.
+第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图，帮助你理解目标图片的上下文环境。 请根据目标图片内容以及上下文信息，请你精准的提取和目标图片相关的文字信息作为描述。
+同时为目标图片生成一个简短的名称。
+输出时请严格遵循以下的 JSON 格式。
 
 # Output Format
 
