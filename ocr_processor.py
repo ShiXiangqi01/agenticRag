@@ -1,46 +1,41 @@
 import json
 import os
 import glob
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
-from qwen_vl_utils import process_vision_info
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, AutoConfig
 import torch
+from accelerate import init_empty_weights
 
 
 IMAGE_ANALYSIS_INSTRUCTION = """
-# Your Role
 
-You are an expert Pdf analysis assistant.
+你是一个专业的PDF分析和OCR助手。
 
-# Your Task
 
-You will receive three image.The first image is the target image; the next three images are from the page before, the same page as, and the page after the target image, respectively.
-You should accurately extract the text related to the target image based on the context provided by the other three images.
-You also need to extract the name or title of the target image, if no name or title is found, you should give a reasonable guess according to the context.
 
-# Output Format
+第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图，帮助你理解目标图片的上下文环境。 请根据目标图片内容以及上下文信息，请你精准的提取和目标图片相关的文字信息作为描述。
+同时为目标图片生成一个简短的名称。
+输出时请严格遵循以下的 JSON 格式。
 
-Output all detected objects in JSON format with the following structure:
-```json
-[
+
+
     {
-'        "name": "<NAME OF THE TARGET IMAGE>",'
-'        "description": "<RELATED TEXT>",'
-'        
+         "name": "<NAME OF THE TARGET IMAGE>",'
+         "description": "<RELATED TEXT>",'
+         
     }
-]
-```
+
 """.strip()
 
 
 class OCRProcessor:
     """使用Qwen VL模型进行OCR处理的工具类"""
     
-    def __init__(self, model_name="Qwen/Qwen3-VL-30B-A3B-Instruct"):
+    def __init__(self, model_name="Qwen/Qwen3-VL-8B-Instruct"):
         """
         使用 transformers 加载 Qwen VL 模型。
         
         Args:
-            model_name (str): HuggingFace 模型名称，默认为 "Qwen/Qwen3-VL-30B-A3B-Instruct"
+            model_name (str): HuggingFace 模型名称，默认为 "Qwen/Qwen3-VL-8B-Instruct"
                            可选: 
                            - "Qwen/Qwen3-VL-32B-Instruct" (最强，需要 ~64GB 显存)
                            - "Qwen/Qwen2-VL-7B-Instruct" (中等)
@@ -49,6 +44,8 @@ class OCRProcessor:
         print(f"正在加载 Qwen VL 模型: {model_name}")
         self.model_name = model_name
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        config = AutoConfig.from_pretrained(model_name)
+        print(config.model_type)
         
         # 加载模型和处理器
         print("加载 processor...")
@@ -56,16 +53,16 @@ class OCRProcessor:
         
         print(f"加载模型到 {self.device}...")
         # 对于 32B 模型，使用 8bit 量化以节省显存
+        
         print("检测到大模型，启用 8bit 量化...")
         self.model = Qwen3VLForConditionalGeneration.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
-            # device_map="auto",
+            dtype="auto",
+            device_map=self.device,  # 使用单个设备而不是 "auto"
+            trust_remote_code=True,
             # load_in_8bit=True,
+            # attn_implementation="flash_attention_2",  
         )
-        
-        # 确保模型移到同一设备
-        self.model = self.model.to(self.device)
         
         print(f"✓ 模型加载成功！设备: {self.device}")
     
@@ -168,32 +165,22 @@ class OCRProcessor:
             # 构建消息
             messages = self.build_messages(image_path, pre_page_path, next_page_path, cur_page_path)
             
-            # 应用聊天模板
-            text = self.processor.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=True
-            )
-            
-            # 处理视觉信息
-            image_inputs, video_inputs = process_vision_info(messages)
             
             # 准备输入
-            inputs = self.processor(
-                text=[text],
-                images=image_inputs,
-                videos=video_inputs,
-                padding=True,
+            inputs = self.processor.apply_chat_template(
+                messages,
+                tokenize = True,
+                add_generation_prompt = True,
                 return_tensors="pt",
+                return_dict = True,
             )
             inputs = inputs.to(self.device)
             
-            # 生成输出
-            with torch.no_grad():
-                generated_ids = self.model.generate(
-                    **inputs,
-                    temperature=0.3,  # 控制生成文本的随机性 越大越创造
-                    max_new_tokens=1024,
-                    do_sample=True
-                )
+            
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=4096,
+            )
             
             # 解码输出
             generated_ids_trimmed = [
@@ -204,7 +191,7 @@ class OCRProcessor:
                 generated_ids_trimmed,
                 skip_special_tokens=True,
                 clean_up_tokenization_spaces=False
-            )[0]
+            )
             
             print(f"✓ 分析完成")
             return output_text
@@ -243,7 +230,7 @@ class OCRProcessor:
             cur_page_path = page_list[page_num]["page_path"]
             next_page_path = page_list[next_page_idx]["page_path"]
             
-            # 生成图片描述
+            # 生成图片描述r
             description_json = self.generate_image_description(
                 image_path, pre_page_path, next_page_path, cur_page_path
             )
@@ -254,7 +241,7 @@ class OCRProcessor:
             
             # 尝试解析 JSON 结果
             try:
-                parsed_json = json.loads(description_json)
+                parsed_json = json.loads(description_json[0])
                 image_name = parsed_json[0].get("name", "Unknown") if isinstance(parsed_json, list) and parsed_json else "Unknown"
                 image_desc = parsed_json[0].get("description", description_json) if isinstance(parsed_json, list) and parsed_json else description_json
             except json.JSONDecodeError:
