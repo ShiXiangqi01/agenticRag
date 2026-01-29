@@ -1,74 +1,52 @@
 [
   {
     "image_id": "page_1_img_0",
-    "image_name": "Unknown",
+    "image_name": "Neck Extensor Stretch",
     "page_number": 1,
     "image_index": 0,
     "image_path": "extracted_images/page_1_img_0.jpeg",
     "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"Neck Extensor Stretch\",\n    \"description\": \"This illustration depicts the 'Neck Extensor Stretch' exercise, which targets the neck extensor muscles. The figure is shown from the back, with hands interlocked behind the head, gently pulling the chin toward the chest. The muscles highlighted in red and labeled include the Semispinalis capitis, Splenius capitis, Scalene, and Upper trapezius. The accompanying text on page 2 identifies the Upper trapezius as the most-stretched muscle, with the Longissimus capitis, semispinalis capitis, splenius capitis, and scalene as lesser-stretched muscles. This stretch is part of a sequence designed to improve neck flexibility, as introduced in Chapter 1, which discusses the anatomy and common causes of neck stiffness.\"\n}"
-    ],
+    "description": "Neck Extensor Stretch\nTechnique\nSit or stand upright.\nInterlock hands on the back of the head near the crown.\nLightly pull the head straight down and try to touch the chin to the chest.\n\nMuscles Stretched\nMost-stretched muscle: Upper trapezius.\nLesser-stretched muscles: Longissimus capitis, semispinalis capitis, splenius capitis, scalene.\n\nCommentary\nYou can do this stretch either while sitting or while standing. A greater stretch is applied when seated. Standing reduces the ability to stretch because reflexes come into play to prevent a loss of balance. During the stretch, make sure not to reduce the stretch by hunching up the shoulders. Also, keep the neck as straight as possible (no curving). Try to touch the chin to the lowest possible point on the chest.",
     "part": "Neck"
   },
   {
     "image_id": "page_2_img_0",
-    "image_name": "Unknown",
+    "image_name": "Neck Extensor and Rotation Stretch Technique",
     "page_number": 2,
     "image_index": 0,
     "image_path": "extracted_images/page_2_img_0.png",
     "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"Neck Extensor Stretch\",\n    \"description\": \"This is a sketch of a person performing a neck stretch, with one hand placed on the back of the head and the head tilted slightly forward. The image is associated with the 'Neck Extensor Stretch' exercise, which is detailed in the text on the following page. The text identifies the muscles stretched, including the upper trapezius, and provides a technique for performing the stretch while sitting or standing upright.\"\n}"
-    ],
+    "description": "Variation: Neck Extensor and Rotation Stretch. Technique: Sit or stand upright. Place the right hand on the back of the head near the crown. Pull the head down toward the right and try to touch the chin as close as possible to the right shoulder. Muscles Stretched: Most-stretched muscles—Left upper trapezius, left sternocleidomastoid. Lesser-stretched muscles—Left longissimus capitis, left semispinalis capitis, left splenius capitis, left scalene. Anatomical labels shown: Sternocleidomastoid, Semispinalis capitis, Splenius capitis, Upper trapezius, Scalene.",
     "part": "Neck"
   },
   {
     "image_id": "page_3_img_0",
-    "image_name": "Unknown",
+    "image_name": "Neck Flexor Stretch",
     "page_number": 3,
     "image_index": 0,
     "image_path": "extracted_images/page_3_img_0.jpeg",
     "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"Neck Flexor Stretch\",\n    \"description\": \"This image illustrates the Neck Flexor Stretch. The technique involves sitting or standing upright, interlocking hands and placing the palms on the forehead, then pulling the head back so the nose points straight up. The muscles stretched are the sternocleidomastoid (most-stretched), with lesser-stretched muscles including the longissimus capitis, semispinalis capitis, and splenius capitis. The image highlights the sternocleidomastoid, splenius capitis, semispinalis capitis, and scalene muscles.\"\n}"
-    ],
+    "description": "Technique: Sit or stand upright. Interlock hands and place the palms on the forehead. Pull the head back so that the nose points straight up to the ceiling. Muscles Stretched: Most-stretched muscle: Sternocleidomastoid. Lesser-stretched muscles: Longissimus capitis, semispinalis capitis, splenius capitis, scalene. Commentary: You can do this stretch either while sitting or while standing. A greater stretch is applied when seated. Standing reduces the ability to stretch because reflexes come into play to prevent a loss of balance. During the stretch, make sure not to reduce the stretch by hunching up the shoulders. Also, try to point the chin as far back as possible.",
     "part": "Neck"
   },
   {
     "image_id": "page_4_img_0",
-    "image_name": "Unknown",
+    "image_name": "Neck Flexor and Rotation Stretch",
     "page_number": 4,
     "image_index": 0,
     "image_path": "extracted_images/page_4_img_0.png",
     "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"Neck Flexor Stretch\",\n    \"description\": \"This is a diagram illustrating the Neck Flexor Stretch exercise. The image shows a person in a standing position with their head tilted back and hands interlocked on the forehead. The stretch targets the neck flexor muscles, with the sternocleidomastoid being the most stretched muscle, and the longissimus capitis, semispinalis capitis, and scalene being the lesser-stretched muscles. The technique involves sitting or standing upright, interlocking hands on the forehead, and pulling the head back so the nose points straight up.\"\n}"
-    ],
+    "description": "Variation: Neck Flexor and Rotation Stretch. When the neck flexors become flexible, progress from stretching the right and left sides simultaneously to stretching the opposite sides individually. Technique: Stand or sit upright. Place right hand on the forehead. Pull the head back and toward the right so that the head points toward the shoulder. Keep the head straight; do not lay the head down to either side. Muscles Stretched: Most-stretched muscle—Left sternocleidomastoid. Lesser-stretched muscles—Left longissimus capitis, left semispinalis capitis, left splenius capitis.",
     "part": "Neck"
   },
   {
     "image_id": "page_5_img_0",
-    "image_name": "Unknown",
+    "image_name": "Neck Muscle Movements",
     "page_number": 5,
     "image_index": 0,
-    "image_path": "extracted_images/page_5_img_0.jpeg",
+    "image_path": "extracted_images/page_5_img_0.png",
     "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"Neck Flexor and Rotation Stretch\",\n    \"description\": \"This image illustrates a neck stretch targeting the flexor muscles. The accompanying text on page 5 (image 2) describes the 'Neck Flexor and Rotation Stretch' technique, which involves pulling the head back and toward the right to stretch the left sternocleidomastoid, longissimus capitis, semispinalis capitis, and splenius capitis. The image on page 6 (image 3) further details neck muscle movements, showing which muscles are stretched during flexion, extension, rotation, lateral flexion, and lateral extension, providing context for the targeted muscles in the stretch.\"\n}"
-    ],
-    "part": "Neck"
-  },
-  {
-    "image_id": "page_5_img_1",
-    "image_name": "Unknown",
-    "page_number": 5,
-    "image_index": 1,
-    "image_path": "extracted_images/page_5_img_1.jpeg",
-    "filename": "Stretching.pdf",
-    "description": [
-      "{\n    \"name\": \"颈前屈和旋转拉伸\",\n    \"description\": \"当颈屈肌变得灵活时，可从同时拉伸左右两侧过渡到单独拉伸对侧。技术：站立或坐直，右手放在前额，将头向后并向右侧拉，使头指向肩膀，保持头部直立，不要向任一侧低头。拉伸的肌肉：最被拉伸的肌肉是左侧胸锁乳突肌。次被拉伸的肌肉：左侧最长颈肌、左侧半棘肌、左侧斜方肌。\"\n}"
-    ],
+    "description": "The stretches in this chapter are excellent overall stretches; however, not all of these stretches may be completely suited to each person's needs. The muscles involved in the various neck movements appear in the following table. To stretch specific muscles, the stretch must involve one or more movements in the opposite direction of the desired muscle's movements. For example, if you want to stretch the left scalene, you could extend the head both backward and laterally to the right. When a muscle has a high level of stiffness, you should use fewer simultaneous opposite movements (you would stretch a very tight right scalene by initially doing just left lateral extension). As a muscle becomes loose, you can incorporate more simultaneous opposite movements.",
     "part": "Neck"
   }
 ]

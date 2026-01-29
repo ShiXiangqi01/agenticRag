@@ -12,9 +12,9 @@ IMAGE_ANALYSIS_INSTRUCTION = """
 
 
 
-第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图，帮助你理解目标图片的上下文环境。 请根据目标图片内容以及上下文信息，请你精准的提取和目标图片相关的文字信息作为描述。
+第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图，帮助你理解目标图片的上下文环境。 请根据目标图片内容以及上下文信息，请你提取和目标图片相关的文字信息作为描述。记住只提取文字不要添加额外信息，优先提取本页内容并且要非常详细。
 同时为目标图片生成一个简短的名称。
-输出时请严格遵循以下的 JSON 格式。
+输出时请严格遵循以下的 JSON 格式, 输出必须是英语。
 
 
 
@@ -242,8 +242,8 @@ class OCRProcessor:
             # 尝试解析 JSON 结果
             try:
                 parsed_json = json.loads(description_json[0])
-                image_name = parsed_json[0].get("name", "Unknown") if isinstance(parsed_json, list) and parsed_json else "Unknown"
-                image_desc = parsed_json[0].get("description", description_json) if isinstance(parsed_json, list) and parsed_json else description_json
+                image_name = parsed_json.get("name", "Unknown") if parsed_json else "Unknown"
+                image_desc = parsed_json.get("description", description_json) if parsed_json else description_json
             except json.JSONDecodeError:
                 # 如果不是 JSON 格式，直接使用原文本
                 image_name = "Analysis Result"
