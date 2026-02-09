@@ -5,7 +5,7 @@ import os
 class PDFImageExtractor:
     """从PDF中提取图片和页面的工具类"""
     
-    def __init__(self, output_dir="extracted_images", pages_dir="pages"):
+    def __init__(self, output_dir="Essentials/Ch40", pages_dir="pages"):
         """
         初始化图片提取器
         
@@ -98,6 +98,6 @@ class PDFImageExtractor:
 if __name__ == "__main__":
     # 测试代码
     extractor = PDFImageExtractor()
-    pdf_file = "Stretching/Neck.pdf"  # 替换为你的PDF文件路径
+    pdf_file = "Ch40.pdf"  # 替换为你的PDF文件路径
     page_list, image_info_list = extractor.extract_images_from_pdf(pdf_file)
     print(f"\n提取了 {len(page_list)} 个页面和 {len(image_info_list)} 张图片")
