@@ -1,0 +1,11 @@
+data:
+  images_df_file: /data/images.pq
+  files_df_file: /data/files.pq
+  body_parts_df_file: /data/body_parts.pq
+
+app:
+  dev_mode: True
+  reset_vdb_on_startup: True
+
+agentic:
+ml_url: http://localhost:8000 

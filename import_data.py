@@ -19,8 +19,16 @@ cur = conn.cursor()
 
 cur.execute(f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        id SERIAL PRIMARY KEY,
-        data JSONB NOT NULL
+        image_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        image_name TEXT,
+        page_number INT,
+        image_index INT,
+        image_path TEXT,
+        file_name_id UUID,
+        description TEXT,
+        part TEXT,
+        base64_image BYTEA
+
     )
 """
 )
@@ -46,9 +54,9 @@ for item in data:
 
 
     cur.execute(f"""
-        INSERT INTO {table_name} (image_name, page_number, image_index,image_path,filename,description,part, base64_image)
+        INSERT INTO {table_name} (image_name, page_number, image_index,image_path,file_name_id,description,part, base64_image)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], item['filename'], item['description'], item['part'], base64_image))
+    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], "b9979c1e-e821-4800-bc43-d371a6308b09", item['description'], item['part'], base64_image))
 
     
 
