@@ -12,10 +12,12 @@ IMAGE_ANALYSIS_INSTRUCTION = """
 你是一个专业的PDF分析和OCR助手。
 
 
-
-第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图。 请根据目标图片内容以及上下文信息，请你提取和目标图片相关的文字信息作为描述。记住只提取文字不要添加额外信息，要非常详细。
-同时为目标图片总结一个简短的名称。
-输出时请严格遵循以下的 JSON 格式, 输出必须是英语.
+1.输入包含两张图片：【目标图片，当前页整体截图】。
+2.提取直接描述目标图片内容的文字信息，包括：
+    -图注(在图片下方，如“FIGURE 40.1”)
+    -正文中明确提及目标图片内容的部分(如“Fig.40.1”)
+3. 根据图片的描述，为目标图片总结一个简短的名称，不可以直接使用图注内容作为名称，名称需要简洁且有区分度。
+4. 输出时请严格遵循以下的 JSON 格式, 输出必须是英语.
 
 
 
@@ -31,7 +33,7 @@ IMAGE_ANALYSIS_INSTRUCTION = """
 class OCRProcessor:
     """使用Qwen VL模型进行OCR处理的工具类"""
     
-    def __init__(self, model_name="Qwen/Qwen3-VL-8B-Thinking"):
+    def __init__(self, model_name="Qwen/Qwen3-VL-8B-Instruct"):
         """
         使用 transformers 加载 Qwen VL 模型。
         
@@ -138,9 +140,7 @@ class OCRProcessor:
                 "role": "user",
                 "content": [
                     {"type": "image", "image": image_path},
-                    {"type": "image", "image": pre_page_path},
-                    {"type": "image", "image": cur_page_path},
-                    {"type": "image", "image": next_page_path},
+                    {"type": "image", "image": cur_page_path},               
                     {"type": "text", "text": IMAGE_ANALYSIS_INSTRUCTION},
                 ],
             }
