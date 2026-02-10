@@ -166,20 +166,20 @@ def _generate_images_embeddings(
     return embeddings
 
 def _create_images_df(
-        files_dir: Path,
-        body_part_dir: Path,
-        images_data_dir: Path,
-        images_pix_dir: Path,
+        files_path: Path,
+        body_part_path: Path,
+        images_data_path: Path,
+        images_pix_path: Path,
         n_proc: int = 4,
 ) -> pd.DataFrame:
     """
     Create a DataFrame containing image metadata from raw data sources.
     
     Args:
-        files_dir: Directory containing JSON files with file metadata
-        body_part_dir: Directory containing JSON files with body part metadata
-        images_data_dir: Directory containing JSON files with image metadata
-        images_pix_dir: Directory containing actual image files
+        files_path: Directory containing JSON files with file metadata
+        body_part_path: Directory containing JSON files with body part metadata
+        images_data_path: Directory containing JSON files with image metadata
+        images_pix_path: Directory containing actual image files
         n_proc: Number of processes for parallel processing
     
     Returns:
@@ -187,82 +187,62 @@ def _create_images_df(
                                image_path, file_name_id, description, body_part_id,
                                base64_image, vecdb_id (UUID)
     """
+
+    with open(files_path, encoding='utf-8') as f:
+        files_json_list = json.load(f)
+        if isinstance(files_json_list["files"], list) is False:
+            files_json_list = [files_json_list["files"]]
+    files_json_list = files_json_list["files"]
+
+    files_dict = {}
+    for file_data in files_json_list:
+        
+        file_name = file_data.get("file_name", "")
+        file_id = file_data.get("file_name_id", str(uuid.uuid4()))
+        files_dict[file_id] = file_name
+
+    with open(body_part_path, encoding='utf-8') as f:
+        body_part_json_list = json.load(f)
+        if isinstance(body_part_json_list["body_part"], list) is False:
+            body_part_json_list = [body_part_json_list["body_part"]]
+    body_part_json_list = body_part_json_list["body_part"]
+
+    body_part_dict = {}
+    for body_part_data in body_part_json_list:
+        
+        part_name = body_part_data.get("part_name", "")
+        part_id = body_part_data.get("body_part_id", str(uuid.uuid4()))
+        body_part_dict[part_id] = part_name
     
-    # Load file metadata
-    files_dict = {}  # {filename: file_name_id}
-    files_json_list = list(files_dir.glob("*.json"))
-    for file_json in files_json_list:
-        with open(file_json, 'r', encoding='utf-8') as f:
-            file_data = json.load(f)
-            if isinstance(file_data, list):
-                file_data = file_data[0] if file_data else {}
-            file_name = file_data.get("file_name", file_json.stem)
-            file_id = str(uuid.uuid4())
-            files_dict[file_name] = file_id
-    
-    # Load body part metadata
-    body_part_dict = {}  # {part_name: body_part_id}
-    body_part_json_list = list(body_part_dir.glob("*.json"))
-    for part_json in body_part_json_list:
-        with open(part_json, 'r', encoding='utf-8') as f:
-            part_data = json.load(f)
-            if isinstance(part_data, list):
-                part_list = part_data
-            else:
-                part_list = [part_data]
-            
-            for part_item in part_list:
-                part_name = part_item.get("part_name", part_json.stem)
-                part_id = str(uuid.uuid4())
-                body_part_dict[part_name] = part_id
-    
-    # Load image metadata
-    images_data = []
-    images_json_list = list(images_data_dir.glob("*.json"))
-    
-    for img_json in tqdm(images_json_list, desc="Loading image metadata"):
-        with open(img_json, 'r', encoding='utf-8') as f:
-            img_data = json.load(f)
-            if isinstance(img_data, list):
-                images_data.extend(img_data)
-            else:
-                images_data.append(img_data)
-    
-    # Build DataFrame
+    with open(images_data_path, encoding='utf-8') as f:
+        images_data_json_list = json.load(f)
+        if isinstance(images_data_json_list["image_records"], list) is False:
+            images_data_json_list = [images_data_json_list["image_records"]]
+    images_data = images_data_json_list["image_records"]
+
     records = []
     
     for img_item in tqdm(images_data, desc="Processing images"):
-        image_id = str(uuid.uuid4())
+        image_id = img_item.get("image_id", str(uuid.uuid4()))
         image_name = img_item.get("image_name", "")
         page_number = img_item.get("page_number", 0)
         image_index = img_item.get("image_index", 0)
         image_path = img_item.get("image_path", "")
-        file_name = img_item.get("file_name", "")
+        file_name_id = img_item.get("file_name_id", "")
         description = img_item.get("description", "")
-        body_part_id = img_item.get("part", "")
+        body_part_id = img_item.get("body_part_id", "")
+        base64_image = img_item.get("base64_image")
         
         # Get or create file_name_id
-        file_name_id = files_dict.get(file_name, str(uuid.uuid4()))
-        if file_name and file_name not in files_dict:
-            files_dict[file_name] = file_name_id
+        
+        file_name = files_dict[file_name_id]
         
         # Get or create body_part_id
-        body_part_id = body_part_dict.get(part_name, str(uuid.uuid4()))
-        if part_name and part_name not in body_part_dict:
-            body_part_dict[part_name] = body_part_id
+        body_part = body_part_dict[body_part_id]
         
-        # Load image and convert to base64
-        base64_image = None
-        try:
-            image_file_path = images_pix_dir / Path(image_path).name
-            if not image_file_path.exists():
-                # Try original path
-                image_file_path = Path(image_path)
-            
-            if image_file_path.exists():
-                base64_image = read_image_bytes(image_file_path)
-        except Exception as e:
-            print(f"Warning: Could not load image {image_path}: {e}")
+        # Use existing base64 if provided; otherwise load from file when possible
+        
+        
         
         # Generate unique ID for vector DB (used in embedding steps)
         vecdb_id = str(uuid.uuid4())
@@ -273,9 +253,9 @@ def _create_images_df(
             "page_number": page_number,
             "image_index": image_index,
             "image_path": str(image_path),
-            "file_name_id": file_name_id,
+            "file_name": file_name,
             "description": description,
-            "body_part_id": body_part_id,
+            "body_part": body_part,
             "base64_image": base64_image,
             "vecdb_id": vecdb_id,
         }
@@ -296,21 +276,18 @@ def _generate_dataframes(
         out_path: Path,
         n_proc: int = 4,
 ):
-    images_data_dir = agenticDB_data_root / "images_data"
-    images_pix_dir = agenticDB_data_root / "images_pix"
-    files_dir = agenticDB_data_root / "files"
-    body_part_dir = agenticDB_data_root / "body_part_data"
+    images_data_path = agenticDB_data_root / "image_records.json"
+    # images_pix_dir = agenticDB_data_root / "images_pix"
+    files_path = agenticDB_data_root / "files.json"
+    body_part_path = agenticDB_data_root / "body_part.json"
     assert agenticDB_data_root.exists(), f"{agenticDB_data_root} does not exist"
-    assert images_data_dir.exists(), f"{images_data_dir} does not exist"
-    assert images_pix_dir.exists(), f"{images_pix_dir} does not exist"  
-    assert files_dir.exists(), f"{files_dir} does not exist"
-    assert body_part_dir.exists(), f"{body_part_dir} does not exist"
+
 
     images_df= _create_images_df(
-        files_dir,
-        body_part_dir,
-        images_data_dir,
-        images_pix_dir,
+        files_path,
+        body_part_path,
+        images_data_path,
+        None,
         n_proc,
     )
     images_df.to_parquet(out_path / "images.parquet", index=False)
@@ -343,8 +320,8 @@ def _generate_embeddings(
 
 
 def main(
-        out_path: str | Path = "src\data\body_part.json",
-        agenticDB_data_root: str | Path = "",
+        out_path: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data",
+        agenticDB_data_root: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data/jsons",
         agentic_ml_url: str = "http://localhost:8000",
         batch_size: int = 128,
         gen_dataframes: bool = True,
