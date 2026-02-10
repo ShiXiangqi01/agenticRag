@@ -343,7 +343,7 @@ def _generate_embeddings(
 
 
 def main(
-        out_path: str | Path = "",
+        out_path: str | Path = "src\data\body_part.json",
         agenticDB_data_root: str | Path = "",
         agentic_ml_url: str = "http://localhost:8000",
         batch_size: int = 128,
@@ -355,8 +355,8 @@ def main(
     out_path = Path(out_path)
     if not out_path.exists():
         raise FileNotFoundError(f"{out_path} does not exist")
-    if gen_images_embeddings:
-        AgenticMLClient(agentic_ml_url)
+    # if gen_images_embeddings:
+    #     AgenticMLClient(agentic_ml_url)
     
     if gen_dataframes:
         _generate_dataframes(
