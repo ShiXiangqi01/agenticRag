@@ -184,3 +184,11 @@ def _generate_embeddings(
         print(f"Wrote {len(images_embeddings)} records to agentic_images_embeddings.parquet")
 
 
+def main(
+        out_path: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data",
+        agenticDB_data_root: str | Path = "/home/xiangqi/xiangqi/agenticRag/data/agenticDB",
+        agentic_ml_url: str = "http://localhost:8000",
+
+
+):
+    pass

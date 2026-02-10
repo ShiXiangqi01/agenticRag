@@ -26,7 +26,7 @@ cur.execute(f"""
         image_path TEXT,
         file_name_id UUID,
         description TEXT,
-        body_part TEXT,
+        body_part_id UUID,
         base64_image BYTEA
 
     )
@@ -54,9 +54,9 @@ for item in data:
 
 
     cur.execute(f"""
-        INSERT INTO {table_name} (image_name, page_number, image_index,image_path,file_name_id,description,body_part, base64_image)
+        INSERT INTO {table_name} (image_name, page_number, image_index,image_path,file_name_id,description,body_part_id, base64_image)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], "b9979c1e-e821-4800-bc43-d371a6308b09", item['description'], "", base64_image))
+    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], "cb6f8b06-a9fc-4432-ad00-2823bf0d8316", item['description'], "7e45e7da-2729-4eb2-b647-913aa3515f79", base64_image))
 
     
 

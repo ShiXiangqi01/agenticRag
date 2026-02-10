@@ -1,52 +1,202 @@
 [
   {
     "image_id": "page_1_img_0",
-    "image_name": "Neck Extensor Stretch",
+    "image_name": "Stage 2 SNAC wrist with beaking and kissing osteophytes",
     "page_number": 1,
     "image_index": 0,
-    "image_path": "extracted_images/page_1_img_0.jpeg",
-    "filename": "Stretching.pdf",
-    "description": "Neck Extensor Stretch\nTechnique\nSit or stand upright.\nInterlock hands on the back of the head near the crown.\nLightly pull the head straight down and try to touch the chin to the chest.\n\nMuscles Stretched\nMost-stretched muscle: Upper trapezius.\nLesser-stretched muscles: Longissimus capitis, semispinalis capitis, splenius capitis, scalene.\n\nCommentary\nYou can do this stretch either while sitting or while standing. A greater stretch is applied when seated. Standing reduces the ability to stretch because reflexes come into play to prevent a loss of balance. During the stretch, make sure not to reduce the stretch by hunching up the shoulders. Also, keep the neck as straight as possible (no curving). Try to touch the chin to the lowest possible point on the chest.",
-    "part": "Neck"
+    "image_path": "Essentials/Ch40/page_1_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "Osteoarthritic change of a wrist with a scaphoid nonunion (SNAC), stage 2. Notable features include the “beaked” appearance of the radial styloid, cystic change along with a nonunion in the scaphoid, and “kissing” osteophytes on adjoining surfaces of the radius and scaphoid.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_1_img_1",
+    "image_name": "Wrist with Malunited Fracture",
+    "page_number": 1,
+    "image_index": 1,
+    "image_path": "Essentials/Ch40/page_1_img_1.png",
+    "filename": "Essentials.pdf",
+    "description": "Wrist osteoarthritis secondary to a malunited wrist fracture. Note the dorsal angulation of the distal articular surface and the reduced joint space. This patient also had significant osteopenia secondary to pain-induced lack of use.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_1_img_2",
+    "image_name": "Wrist with Malunited Fracture",
+    "page_number": 1,
+    "image_index": 2,
+    "image_path": "Essentials/Ch40/page_1_img_2.png",
+    "filename": "Essentials.pdf",
+    "description": "Wrist osteoarthritis secondary to a malunited wrist fracture. Note the dorsal angulation of the distal articular surface and the reduced joint space. This patient also had significant osteopenia secondary to pain-induced lack of use.",
+    "part": "Wrist"
   },
   {
     "image_id": "page_2_img_0",
-    "image_name": "Neck Extensor and Rotation Stretch Technique",
+    "image_name": "Wrist with Scapholunate Advanced Collapse Stage 2",
     "page_number": 2,
     "image_index": 0,
-    "image_path": "extracted_images/page_2_img_0.png",
-    "filename": "Stretching.pdf",
-    "description": "Variation: Neck Extensor and Rotation Stretch. Technique: Sit or stand upright. Place the right hand on the back of the head near the crown. Pull the head down toward the right and try to touch the chin as close as possible to the right shoulder. Muscles Stretched: Most-stretched muscles—Left upper trapezius, left sternocleidomastoid. Lesser-stretched muscles—Left longissimus capitis, left semispinalis capitis, left splenius capitis, left scalene. Anatomical labels shown: Sternocleidomastoid, Semispinalis capitis, Splenius capitis, Upper trapezius, Scalene.",
-    "part": "Neck"
+    "image_path": "Essentials/Ch40/page_2_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "Advanced wrist osteoarthritis secondary to SLAC (stage 3). Note the increased scapholunate space, the sclerosis in the radioscaphoid and lunocapitate joints, and the proximal migration of the capitate. Most notable in both views is the complete loss of normal wrist alignment.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_2_img_1",
+    "image_name": "Wrist Joint with Advanced Osteoarthritis",
+    "page_number": 2,
+    "image_index": 1,
+    "image_path": "Essentials/Ch40/page_2_img_1.png",
+    "filename": "Essentials.pdf",
+    "description": "Advanced wrist osteoarthritis secondary to SLAC (stage 3). Note the increased scapholunate space, the sclerosis in the radioscaphoid and lunocapitate joints, and the proximal migration of the capitate. Most notable in both views is the complete loss of normal wrist alignment.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_2_img_2",
+    "image_name": "Wrist Osteoarthritis with Scapholunate Advanced Collapse",
+    "page_number": 2,
+    "image_index": 2,
+    "image_path": "Essentials/Ch40/page_2_img_2.png",
+    "filename": "Essentials.pdf",
+    "description": "Wrist osteoarthritis secondary to scapholunate advanced collapse (SLAC), stage 2. Note the increased scapholunate space and the sclerosis of the radioscaphoid joint. Early osteophytes are clearly seen on the radial border of the scaphoid. The lateral view shows dorsal osteophytes as well as the dorsally angled lunate.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_2_img_3",
+    "image_name": "Lateral View of Wrist with Scapholunate Advanced Collapse Stage 2",
+    "page_number": 2,
+    "image_index": 3,
+    "image_path": "Essentials/Ch40/page_2_img_3.png",
+    "filename": "Essentials.pdf",
+    "description": "Wrist osteoarthritis secondary to scapholunate advanced collapse (SLAC), stage 2. Note the increased scapholunate space and the sclerosis of the radioscaphoid joint. Early osteophytes are clearly seen on the radial border of the scaphoid. The lateral view shows dorsal osteophytes as well as the dorsally angled lunate.",
+    "part": "Wrist"
   },
   {
     "image_id": "page_3_img_0",
-    "image_name": "Neck Flexor Stretch",
+    "image_name": "Osteoarthritic Wrist with Swelling",
     "page_number": 3,
     "image_index": 0,
-    "image_path": "extracted_images/page_3_img_0.jpeg",
-    "filename": "Stretching.pdf",
-    "description": "Technique: Sit or stand upright. Interlock hands and place the palms on the forehead. Pull the head back so that the nose points straight up to the ceiling. Muscles Stretched: Most-stretched muscle: Sternocleidomastoid. Lesser-stretched muscles: Longissimus capitis, semispinalis capitis, splenius capitis, scalene. Commentary: You can do this stretch either while sitting or while standing. A greater stretch is applied when seated. Standing reduces the ability to stretch because reflexes come into play to prevent a loss of balance. During the stretch, make sure not to reduce the stretch by hunching up the shoulders. Also, try to point the chin as far back as possible.",
-    "part": "Neck"
-  },
-  {
-    "image_id": "page_4_img_0",
-    "image_name": "Neck Flexor and Rotation Stretch",
-    "page_number": 4,
-    "image_index": 0,
-    "image_path": "extracted_images/page_4_img_0.png",
-    "filename": "Stretching.pdf",
-    "description": "Variation: Neck Flexor and Rotation Stretch. When the neck flexors become flexible, progress from stretching the right and left sides simultaneously to stretching the opposite sides individually. Technique: Stand or sit upright. Place right hand on the forehead. Pull the head back and toward the right so that the head points toward the shoulder. Keep the head straight; do not lay the head down to either side. Muscles Stretched: Most-stretched muscle—Left sternocleidomastoid. Lesser-stretched muscles—Left longissimus capitis, left semispinalis capitis, left splenius capitis.",
-    "part": "Neck"
+    "image_path": "Essentials/Ch40/page_3_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "Clinical appearance of an osteoarthritic wrist that in this particular instance was secondary to a scaphoid nonunion. The diffuse radiodorsal swelling indicates some degree of synovitis.",
+    "part": "Wrist"
   },
   {
     "image_id": "page_5_img_0",
-    "image_name": "Neck Muscle Movements",
+    "image_name": "Postoperative Wrist Radiograph",
     "page_number": 5,
     "image_index": 0,
-    "image_path": "extracted_images/page_5_img_0.png",
-    "filename": "Stretching.pdf",
-    "description": "The stretches in this chapter are excellent overall stretches; however, not all of these stretches may be completely suited to each person's needs. The muscles involved in the various neck movements appear in the following table. To stretch specific muscles, the stretch must involve one or more movements in the opposite direction of the desired muscle's movements. For example, if you want to stretch the left scalene, you could extend the head both backward and laterally to the right. When a muscle has a high level of stiffness, you should use fewer simultaneous opposite movements (you would stretch a very tight right scalene by initially doing just left lateral extension). As a muscle becomes loose, you can incorporate more simultaneous opposite movements.",
-    "part": "Neck"
+    "image_path": "Essentials/Ch40/page_5_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "Plain radiographs of the patient seen in Figure 40.3 after she underwent a proximal row carpectomy. A terminal radial styloidectomy has also been performed to reduce impingement of the trapezium on the tip of the radius. Note how well the capitate articulates with the lunate fossa of the distal radius.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_5_img_1",
+    "image_name": "Postoperative Wrist Radiograph",
+    "page_number": 5,
+    "image_index": 1,
+    "image_path": "Essentials/Ch40/page_5_img_1.png",
+    "filename": "Essentials.pdf",
+    "description": "Plain radiographs of the patient seen in Figure 40.3 after she underwent a proximal row carpectomy. A terminal radial styloidectomy has also been performed to reduce impingement of the trapezium on the tip of the radius. Note how well the capitate articulates with the lunate fossa of the distal radius.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_5_img_2",
+    "image_name": "Intraoperative View of Proximal Row Carpectomy",
+    "page_number": 5,
+    "image_index": 2,
+    "image_path": "Essentials/Ch40/page_5_img_2.png",
+    "filename": "Essentials.pdf",
+    "description": "An intraoperative photograph during a proximal row carpectomy, showing healthy articular cartilage over the head of the capitate, with labeled anatomical structures including the pisiform, hamate, capitate, radio-lunate ligament, and radio-scapho-capitate ligament.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_5_img_3",
+    "image_name": "Postoperative Wrist Function",
+    "page_number": 5,
+    "image_index": 3,
+    "image_path": "Essentials/Ch40/page_5_img_3.png",
+    "filename": "Essentials.pdf",
+    "description": "Postoperative function 6 months after a proximal row carpectomy. The patient has recovered nearly a 100-degree arc of motion and has no pain.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_5_img_4",
+    "image_name": "Postoperative Wrist Function",
+    "page_number": 5,
+    "image_index": 4,
+    "image_path": "Essentials/Ch40/page_5_img_4.png",
+    "filename": "Essentials.pdf",
+    "description": "Postoperative function 6 months after a proximal row carpectomy. The patient has recovered nearly a 100-degree arc of motion and has no pain.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_6_img_0",
+    "image_name": "Postoperative Four-Bone Fusion with Hardware",
+    "page_number": 6,
+    "image_index": 0,
+    "image_path": "Essentials/Ch40/page_6_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.9 A and B, Postoperative radiographs after scaphoid excision and four-bone fusion have been performed. ",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_6_img_1",
+    "image_name": "Postoperative Four-Bone Fusion with Hardware",
+    "page_number": 6,
+    "image_index": 1,
+    "image_path": "Essentials/Ch40/page_6_img_1.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.9 A and B, Postoperative radiographs after scaphoid excision and four-bone fusion have been performed. The image shows the wrist with multiple surgical pins securing the fusion between the radius, proximal row, and distal row of carpal bones. This procedure is indicated for severe arthritis involving multiple joints and is beneficial for patients with minimal or no wrist motion.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_6_img_2",
+    "image_name": "Postoperative Radiograph of Scaphoid Excision and Four-Bone Fusion",
+    "page_number": 6,
+    "image_index": 2,
+    "image_path": "Essentials/Ch40/page_6_img_2.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.10 A and B, A mature four-bone fusion after a secondary procedure to remove the pins seen in Figure 40.9. To avoid the second operative procedure, some may elect to leave the pins percutaneous and to remove them during an office visit.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_6_img_3",
+    "image_name": "Postoperative Wrist Fusion with Hardware",
+    "page_number": 6,
+    "image_index": 3,
+    "image_path": "Essentials/Ch40/page_6_img_3.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.10 A and B, A mature four-bone fusion after a secondary procedure to remove the pins seen in Figure 40.9. To avoid the second operative procedure, some may elect to leave the pins percutaneous and to remove them during an office visit.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_7_img_0",
+    "image_name": "Wrist Fusion with Plate",
+    "page_number": 7,
+    "image_index": 0,
+    "image_path": "Essentials/Ch40/page_7_img_0.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.11 A and B, a total wrist arthrodesis with a contoured plate and screws, showing the wrist in mild ulnar deviation in the anteroposterior radiograph. This is the optimal position for hand function in such patients. The patient also underwent excision of the distal ulna.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_7_img_1",
+    "image_name": "Wrist Fusion with Plate and Screws",
+    "page_number": 7,
+    "image_index": 1,
+    "image_path": "Essentials/Ch40/page_7_img_1.png",
+    "filename": "Essentials.pdf",
+    "description": "FIGURE 40.11 A and B, a total wrist arthrodesis with a contoured plate and screws. In the anteroposterior radiograph, it is evident that the wrist is in mild ulnar deviation; in the lateral radiograph, the wrist appears to be in mild dorsiflexion. This is the optimal position for hand function in such patients. The patient also underwent excision of the distal ulna.",
+    "part": "Wrist"
+  },
+  {
+    "image_id": "page_7_img_2",
+    "image_name": "Wrist with Advanced Degenerative Disease",
+    "page_number": 7,
+    "image_index": 2,
+    "image_path": "Essentials/Ch40/page_7_img_2.png",
+    "filename": "Essentials.pdf",
+    "description": "Advanced degenerative disease in a patient who underwent a proximal row carpectomy a few years before. Despite the radiographic appearance, the patient reported only mild pain.",
+    "part": "Wrist"
   }
 ]
