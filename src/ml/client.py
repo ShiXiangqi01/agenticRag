@@ -1,8 +1,8 @@
 import numpy as np
-from ml.dto import EmbeddingsInput, EmbeddingsOutput
-from singleton_meta import SingletonMeta
+from src.ml.dto import EmbeddingsInput, EmbeddingsOutput
+from src.singleton_meta import SingletonMeta
 from typing import TYPE_CHECKING, Literal
-from config import load_config
+from src.config import load_config
 from loguru import logger
 import requests
 import time
@@ -36,6 +36,29 @@ class AgenticMLClient(metaclass=SingletonMeta):
         except Exception:
             return False
         
+    def compute_image_embedding(
+            self,
+            base64_image:str,
+            return_tensor: Literal["pt" , "np"] | None = "np",
+    )-> "EmbeddingsOutput | np.ndarray | torch.Tensor":
+        """
+        Get the embedding for a base64 encoded image.
+        """
+
+        input = EmbeddingsInput(input_data=base64_image, input_type="image")
+        return self._get_embeddings(input, return_tensor, squeeze=True)
+        
+    def compute_text_embedding(
+            self,
+            text: str,
+            return_tensor: Literal["pt" , "np"] | None = "np",
+    ) -> "EmbeddingsOutput | np.ndarray | torch.Tensor":
+        """
+        Get the embedding for a text input.
+        """
+        input = EmbeddingsInput(input_data=text, input_type="text")
+        return self._get_embeddings(input, return_tensor, squeeze=True)
+    
     def _get_embeddings(
         self,
         input: EmbeddingsInput,

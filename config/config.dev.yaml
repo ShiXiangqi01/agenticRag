@@ -1,11 +1,24 @@
 data:
-  images_df_file: /data/images.pq
-  files_df_file: /data/files.pq
-  body_parts_df_file: /data/body_parts.pq
+  images_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/images.parquet
+  images_embedding_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/agentic_images_embeddings.parquet
+  texts_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/texts.parquet
+  texts_embedding_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/agentic_texts_embeddings.parquet
+  agentic_data_root: /home/xiangqi/xiangqi/agenticRag/Database
+  
+
 
 app:
-  dev_mode: True
+  dev_mode: False
   reset_vdb_on_startup: True
 
+weaviate:
+  host: localhost
+  http_port: 8080
+  grpc_port: 50051
+
+mlflow:
+  host: localhost
+  port: 8081
+
 agentic:
-ml_url: http://localhost:8000 
+  ml_url: http://localhost:8001 
