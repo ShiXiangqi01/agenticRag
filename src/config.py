@@ -7,12 +7,24 @@ from loguru import logger
 
 class DataConfig(BaseSettings):
     images_df_file:str
-    files_df_file:str
-    body_parts_df_file:str
+    images_embedding_df_file:str
+    texts_df_file:str
+    texts_embedding_df_file:str
+    agentic_data_root:str
+
 
 class AgenticConfig(BaseSettings):
     ml_url: str
+
+class WeaviateConfig(BaseSettings):
+    host:str
+    http_port:int
+    grpc_port:int
     
+class AppConfig(BaseSettings):
+    dev_mode: bool
+    reset_vdb_on_startup: bool
+
 class Config(BaseSettings):
     
     model_config = SettingsConfigDict(
@@ -22,13 +34,17 @@ class Config(BaseSettings):
     )
 
     data: DataConfig
+    agentic: AgenticConfig
+    weaviate: WeaviateConfig
+    app: AppConfig
 
+    
 @lru_cache(maxsize=2)
 def load_config(config_file: str | Path | None = None) -> Config:
     if config_file is None:
         config_file = os.getenv("AGENTIC_CONFIG_FILE", None)
     if config_file is None:
-        config_file = "config.dev.yaml"
+        config_file = "/home/xiangqi/xiangqi/agenticRag/config/config.dev.yaml"
     
     config_file = Path(config_file)
 

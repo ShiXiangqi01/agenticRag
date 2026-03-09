@@ -1,0 +1,17 @@
+{
+"texts_records": [
+	{
+		"doc_id" : "45e45ffb-51ff-46b5-b9dd-fd9c25887fcd",
+		"character_name" : "Wrist Osteoarthritis",
+		"character_path" : "Essentials\/Ch40.pdf",
+		"file_name_id" : "cb6f8b06-a9fc-4432-ad00-2823bf0d8316",
+		"body_part_id" : "7e45e7da-2729-4eb2-b647-913aa3515f79"
+	},
+	{
+		"doc_id" : "88c0d124-7987-42e7-ba05-9b20cdbc6c35",
+		"character_name" : "Neck",
+		"character_path" : "Stretching\/Neck.pdf",
+		"file_name_id" : "b9979c1e-e821-4800-bc43-d371a6308b09",
+		"body_part_id" : "35b8f3bd-d0f0-453e-8c89-63b3085eed24"
+	}
+]}

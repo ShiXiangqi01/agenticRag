@@ -1,17 +1,16 @@
 import base64
 import io
 import os
-from fastapi import logger
+
 import litserve as ls
-
-from loguru import logger
-from transformers import SiglipModel, SiglipProcessor, BatchFeature
 import torch
-
-from ml.dto import EmbeddingsInput, EmbeddingsOutput
+from loguru import logger
 from PIL import Image
+from transformers import BatchFeature, SiglipModel, SiglipImageProcessor, SiglipTokenizer
+from dto import EmbeddingsInput, EmbeddingsOutput
 
-MODEL_NAME = "google/siglip-so400m-pathch14-384"
+
+MODEL_NAME = "google/siglip-base-patch16-224"
 TORCH_DTYPE = torch.bfloat16
 AGENTIC_ML_DEV_MODE = int(os.environ.get("AGENTIC_ML_DEV_MODE", "1"))
 
@@ -21,12 +20,12 @@ class SigLipLitAPI(ls.LitAPI):
         logger.info(f"Using device: {device}")
         self.model = SiglipModel.from_pretrained(
             MODEL_NAME,
-            attn_implementation="flash_attention_2",
             torch_dtype=TORCH_DTYPE,
             device_map=device
 
         )
-        self.processor = SiglipProcessor.from_pretrained(MODEL_NAME)
+        self.processor = SiglipImageProcessor.from_pretrained(MODEL_NAME)
+        self.tokenizer = SiglipTokenizer.from_pretrained(MODEL_NAME)
 
     def _compute_text_embeddings(self, text_features:BatchFeature) -> torch.Tensor:
         with torch.no_grad():
@@ -45,7 +44,17 @@ class SigLipLitAPI(ls.LitAPI):
             image = None
         elif request.input_type == "image":
             image_data = request.input_data if isinstance(request.input_data, list) else [request.input_data]
-            image = [Image.open(io.BytesIO(base64.b64decode(b64))) for b64 in image_data]
+            image = []
+            for i, b64 in enumerate(image_data):
+                try:
+                    img_bytes = base64.b64decode(b64)
+                    img = Image.open(io.BytesIO(img_bytes))
+                    img.load()  # Ensure the image is fully loaded
+                    if img.mode != "RGB":
+                        img = img.convert("RGB")
+                    image.append(img)
+                except Exception as e:
+                    logger.error(f"Failed to decode image at index {i}: {e}")
             text = None
         else:
             raise ValueError("Invalid input_type. Must be 'text' or 'image'.")
@@ -63,12 +72,11 @@ class SigLipLitAPI(ls.LitAPI):
         elif images is not None and len(images) > 0:
             image_features = self.processor(
                 images=images,
-                padding="max_length",
                 return_tensors="pt"
             )
             embs = self._compute_image_embeddings(image_features)
         elif texts is not None and len(texts) > 0:
-            text_features = self.processor(
+            text_features = self.tokenizer(
                 text=texts,
                 padding="max_length",
                 truncation=True, #如果长度超过模型允许的最大长度，就自动截断到最大长度，避免超长报错。
@@ -80,9 +88,16 @@ class SigLipLitAPI(ls.LitAPI):
         return embs
     
     def encode_response(self, outputs: torch.Tensor) -> EmbeddingsOutput:
+        if hasattr(outputs, 'pooler_output') and outputs.pooler_output is not None:
+            embeddings_tensor = outputs.pooler_output
+        else:
+
+            embeddings_tensor = outputs.last_hidden_state[:, 0, :]
+        embeddings_list = embeddings_tensor.detach().cpu().tolist()
+
         return EmbeddingsOutput(
-            embeddings = outputs.tolist(),
-            embeddings_model = MODEL_NAME,
+            embeddings=embeddings_list,
+            embedding_model=MODEL_NAME,
         )
     
 if __name__ == "__main__":
@@ -91,15 +106,14 @@ if __name__ == "__main__":
     else:
         workers_per_device = 1
     
-    port = 8000
+    port = 8001
     logger.info(f"Starting server on port {port}")
     logger.info(f"Workers per device: {workers_per_device}")
 
-    api = SigLipLitAPI()
+    api = SigLipLitAPI(api_path="/embeddings")
     server = ls.LitServer(
         api,
         accelerator="cuda",
-        api_path="/embed",
         workers_per_device=workers_per_device,
     )
     server.run(port=port)

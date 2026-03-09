@@ -24,6 +24,7 @@ class EmbeddingType(str, Enum):
 class EmbeddingName(str, Enum):
     IMAGES_IMG = "images_img"
     IMAGES_DESCRIPTION = "images_description"
+    TEXT_CONTENT = "text_content"
 
     def __str__(self) :
         return self.value
@@ -41,8 +42,8 @@ class ImagesEmbeddingDataFrameSchema(BaseEmbeddingDataFrameSchema):
 
 def _load_dataframes(root: Path) -> pd.DataFrame:
 
-    images_df = pd.read_parquet(root / "agentic_images.parquet")
-    print(f"Loaded {len(images_df)} records from agentic_images.parquet")
+    images_df = pd.read_parquet(root / "images.parquet")
+    print(f"Loaded {len(images_df)} records from images.parquet")
 
     return images_df
 
@@ -146,22 +147,25 @@ def _generate_images_embeddings(
         image_embeddings = _generate_images_img_embeddings(images_df, agentic_ml_url, batch_size)
         descriptions_embeddings = _generate_images_text_embeddings(images_df, agentic_ml_url, batch_size)
     else:
-        splits = np.array_split(images_df, n_proc)
+        total_rows = len(images_df)
+        idx_splits = np.array_split(np.arange(total_rows), n_proc)
+        splits = [images_df.iloc[idx] for idx in idx_splits]
+        print(type(splits[0]))
         with Pool(n_proc) as pool:
             image_embeddings = pool.starmap(
                 _generate_images_img_embeddings,
                 [(split, agentic_ml_url, batch_size, wid) for wid, split in enumerate(splits)],
             )
-        image_embeddings = pd.concat(image_embeddings)
+        image_embeddings = pd.concat(image_embeddings, ignore_index=True)
 
         with Pool(n_proc) as pool:
             descriptions_embeddings = pool.starmap(
                 _generate_images_text_embeddings,
                 [(split, agentic_ml_url, batch_size, wid) for wid, split in enumerate(splits)],
             )
-        descriptions_embeddings = pd.concat(descriptions_embeddings)
+        descriptions_embeddings = pd.concat(descriptions_embeddings, ignore_index=True)
 
-        embeddings = pd.concat([image_embeddings, descriptions_embeddings], axis=1)
+    embeddings = pd.concat([image_embeddings, descriptions_embeddings], axis=0, ignore_index=True)
 
     return embeddings
 
@@ -306,7 +310,7 @@ def _generate_embeddings(
         batch_size: int,
         gen_images_embeddings: bool,
         n_proc: int,
-):
+):  
     images_df = _load_dataframes(out_path)
     if gen_images_embeddings:
         images_embeddings = _generate_images_embeddings(
@@ -322,11 +326,11 @@ def _generate_embeddings(
 def main(
         out_path: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data",
         agenticDB_data_root: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data/jsons",
-        agentic_ml_url: str = "http://localhost:8000",
-        batch_size: int = 128,
-        gen_dataframes: bool = True,
+        agentic_ml_url: str = "http://localhost:8001",
+        batch_size: int = 25,
+        gen_dataframes: bool = False,
         gen_images_embeddings: bool = True,
-        n_proc: int = 4,
+        n_proc: int = 1,
 ):
     agenticDB_data_root = Path(agenticDB_data_root)
     out_path = Path(out_path)
@@ -348,7 +352,7 @@ def main(
             agentic_ml_url,
             batch_size,
             gen_images_embeddings,
-            n_proc,
+            n_proc,83
         )
 
 if __name__ == "__main__":
