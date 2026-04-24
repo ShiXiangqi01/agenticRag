@@ -4,8 +4,16 @@ from src.data.dtos.vector_db import (
     AgenticImagesSemanticSearchResult,
     AgenticTextsSemanticSearchResult,
 )
+from src.data.dtos.postgredb import (
+    PostgreImageBase,
+    PostgreImage,
+    PostgreText
+)
+from src.config import load_config
 from src.data.dtos.search import (
     SimilaritySearchQuery,
+    ImagesLexicalSearchQuery,
+    TextsLexicalSearchQuery
 )
 from src.data.vector_db import VectorDB
 from src.ml.client import AgenticMLClient
@@ -15,7 +23,8 @@ router = APIRouter(prefix= "/data/search", tags=["data/search"])
 
 vdb = VectorDB()
 mlc = AgenticMLClient()
-model = SentenceTransformer("BAAI/bge-m3")
+config = load_config()
+model = SentenceTransformer(config.agentic.model_name)
 
 @router.post(
     "/Images/similar/i2i",
@@ -40,7 +49,7 @@ def agentic_images_similarity_search_i2i(query: SimilaritySearchQuery):
 def agentic_images_similarity_search_t2i(query: SimilaritySearchQuery):
     try:
         query_embedding = mlc.compute_text_embedding(text=query.query, return_tensor="np").tolist()
-        return vdb._agentic_images_description_similarity_search(
+        return vdb._agentic_images_img_similarity_search(
             query_embedding=query_embedding,
             top_k=query.top_k,
         )
@@ -60,6 +69,41 @@ def agentic_texts_similarity_search_t2t(query: SimilaritySearchQuery):
             top_k=10,
             target_vector="text_content",
             return_internal_texts=False,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+#TODO: i2t
+
+@router.post(
+    "/Images/lexical/image_name",
+    response_model = list[PostgreImageBase],
+    summary= "Perform a lexical search for images via a text query.",
+)
+def agentic_images_lexical_search_image_name(query: ImagesLexicalSearchQuery):
+    try:
+        return vdb._find_images_relative_lexical_search(
+            query=query.query,
+            top_k=query.top_k,
+            search_in_image_name=query.search_in_image_name,
+            search_in_file_name=query.search_in_file_name,
+            search_in_body_part=query.search_in_body_part,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post(
+    "/Texts/lexical/text_content",
+    response_model = list[PostgreText],
+    summary= "Perform a lexical search for texts via a text query.",
+)
+def agentic_texts_lexical_search_text_content(query: TextsLexicalSearchQuery):
+    try:
+        return vdb._find_texts_content_relative_lexical_search(
+            query=query.query,
+            top_k=query.top_k,
+            search_in_file_name=query.search_in_file_name,
+            search_in_body_part=query.search_in_body_part,
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

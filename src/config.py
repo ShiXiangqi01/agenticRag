@@ -11,10 +11,12 @@ class DataConfig(BaseSettings):
     texts_df_file:str
     texts_embedding_df_file:str
     agentic_data_root:str
+    user_images_dir:str
 
 
 class AgenticConfig(BaseSettings):
     ml_url: str
+    model_name: str
 
 class WeaviateConfig(BaseSettings):
     host:str
@@ -24,6 +26,9 @@ class WeaviateConfig(BaseSettings):
 class AppConfig(BaseSettings):
     dev_mode: bool
     reset_vdb_on_startup: bool
+
+class AssistantConfig(BaseSettings):
+    default_model: str
 
 class Config(BaseSettings):
     
@@ -37,7 +42,7 @@ class Config(BaseSettings):
     agentic: AgenticConfig
     weaviate: WeaviateConfig
     app: AppConfig
-
+    assistant: AssistantConfig
     
 @lru_cache(maxsize=2)
 def load_config(config_file: str | Path | None = None) -> Config:

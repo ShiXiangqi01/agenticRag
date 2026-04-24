@@ -96,7 +96,7 @@ def _process_document(doc_item: dict, file_name: str, body_part: str) -> dict:
             "vector_id": vector_id,
             "doc_id": doc_item.get("doc_id", str(uuid.uuid4())),
             "character_name": doc_item.get("character_name", ""),
-            "character_path": doc_item.get("character_path", ""),
+            "character_path": doc_item.get("", ""),
             "file_name": file_name,
             "body_part": body_part,
             "content": chunk,
@@ -124,7 +124,7 @@ def _create_texts_df(
         n_proc: Number of processes for parallel processing
     
     Returns:
-        DataFrame with columns: "doc_id","character_name","character_path","file_name","body_part",
+        DataFrame with columns: "doc_id","character_name","","file_name","body_part",
                                 "content","chunk_index"
     """
 
@@ -209,6 +209,17 @@ def _generate_texts_embeddings_bgem3(
             data.embedding_model.append(model_name)
             data.embedding.append(embedding.tolist())
         batch = []
+
+    if batch:
+        embeddings = model.encode([row['content'] for row in batch], convert_to_numpy=True)
+        for row, embedding in zip(batch, embeddings):
+            data.doc_id.append(row['doc_id'])
+            data.vectorDB_id.append(row['vector_id'])
+            data.chunk_index.append(row['chunk_index'])
+            data.embedding_type.append(EmbeddingType.TEXT)
+            data.embedding_name.append(EmbeddingName.TEXT_CONTENT)
+            data.embedding_model.append(model_name)
+            data.embedding.append(embedding.tolist())
     
     return pd.DataFrame(data.model_dump())
 

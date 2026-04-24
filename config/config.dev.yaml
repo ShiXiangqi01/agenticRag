@@ -3,7 +3,8 @@ data:
   images_embedding_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/agentic_images_embeddings.parquet
   texts_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/texts.parquet
   texts_embedding_df_file: /home/xiangqi/xiangqi/agenticRag/src/data/agentic_texts_embeddings.parquet
-  agentic_data_root: /home/xiangqi/xiangqi/agenticRag/Database
+  agentic_data_root: /home/xiangqi/xiangqi/agenticRag/
+  user_images_dir: /home/xiangqi/xiangqi/agenticRag/Database/user_images
   
 
 
@@ -21,4 +22,8 @@ mlflow:
   port: 8081
 
 agentic:
-  ml_url: http://localhost:8001 
+  ml_url: http://localhost:8001
+  model_name: "BAAI/bge-m3" 
+
+assistant:
+  default_model: "ollama/qwen3.5:27b"

@@ -117,6 +117,14 @@ AGENTIC_TEXTS_SCHEMA_PROPS = [
         vectorize_property_name=False,
     ),
     Property(
+        name= "character_name",
+        data_type=DataType.TEXT,
+        tokenization=Tokenization.WORD,
+        description="The name of the character text file.",
+        skip_vectorization=True,
+        vectorize_property_name=False,
+    ),
+    Property(
         name = "character_path",
         data_type=DataType.TEXT,
         tokenization=Tokenization.FIELD,

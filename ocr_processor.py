@@ -1,71 +1,73 @@
 import json
 import os
 import glob
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, AutoConfig
-import torch
-from accelerate import init_empty_weights
-from qwen_vl_utils import process_vision_info
+from ollama import Client
 
 
 IMAGE_ANALYSIS_INSTRUCTION = """
 
-你是一个专业的PDF分析和OCR助手。
+You are a professional PDF and image analysis assistant specialized in extracting contextual information from document screenshots.
 
+## Task Overview
+You will receive 4 images:
+1. **Target Image**: The specific region/element to analyze
+2. **Context Images**: Full-page screenshots of the previous page, current page, and next page
 
+## Your Objectives
+1. **Analyze the target image**: Identify its content type (e.g., chart, diagram, table, code snippet, equation, illustration)
+2. **Leverage context**: Use the surrounding pages to extract relevant captions, labels, section headings, or explanatory text associated with the target image
+3. **Generate outputs**:
+   - `name`: A concise, descriptive title (3-8 words) in English. Use semantic naming, NOT generic references like "Figure 40.1" or "image_001"
+   - `description`: A clear English summary (1-3 sentences) that includes:
+     • What the image depicts
+     • Relevant contextual text from surrounding pages (e.g., captions, figure references, section context)
 
-第一张图片是目标图片，后面三张图片分别是上一页、当前页和下一页的整体截图。 请根据目标图片内容以及上下文信息，请你提取和目标图片相关的文字信息作为描述。记住只提取文字不要添加额外信息，要非常详细。
-同时为目标图片总结一个简短的名称。
-输出时请严格遵循以下的 JSON 格式, 输出必须是英语.
+## Output Format Requirements
+- Output **ONLY** a valid JSON object with exactly two keys: `name` and `description`
+- Use double quotes for all JSON strings
+- Do NOT include markdown code blocks, explanations, or additional text
+- Ensure the JSON is parseable (no trailing commas, proper escaping)
 
+## Example Output
+{
+    "name": 
+    "description": 
+}
 
-
-    {
-         "name": "<NAME OF THE TARGET IMAGE>",'
-         "description": "<RELATED TEXT>",'
-         
-    }
+## Quality Guidelines
+✅ Prioritize accuracy: Only include text/context that is clearly associated with the target image
+✅ Be concise: Avoid redundant or overly verbose descriptions
+✅ Use technical terminology appropriately when the content is domain-specific
+✅ If contextual text is ambiguous or unavailable, describe only what is visually evident in the target image
 
 """.strip()
 
 
 class OCRProcessor:
-    """使用Qwen VL模型进行OCR处理的工具类"""
+    """使用 Ollama 本地视觉模型进行OCR处理的工具类"""
     
-    def __init__(self, model_name="Qwen/Qwen3-VL-8B-Thinking"):
+    def __init__(self, model_name="qwen3.5:27b", ollama_host="http://127.0.0.1:11434"):
         """
-        使用 transformers 加载 Qwen VL 模型。
+        使用 Ollama 本地模型。
         
         Args:
-            model_name (str): HuggingFace 模型名称，默认为 "Qwen/Qwen3-VL-32B-Instruct"
-                           可选: 
-                           - "Qwen/Qwen3-VL-32B-Instruct" (最强，需要 ~64GB 显存)
-                           - "Qwen/Qwen2-VL-7B-Instruct" (中等)
-                           - "Qwen/Qwen2-VL-2B-Instruct" (更小更快)
+            model_name (str): Ollama 本地模型名，例如 "qwen3.5:27b"
+            ollama_host (str): Ollama 服务地址，默认 "http://127.0.0.1:11434"
         """
-        print(f"正在加载 Qwen VL 模型: {model_name}")
+        print(f"正在连接 Ollama 模型: {model_name}")
         self.model_name = model_name
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        config = AutoConfig.from_pretrained(model_name)
-        print(config.model_type)
-        
-        # 加载模型和处理器
-        print("加载 processor...")
-        self.processor = AutoProcessor.from_pretrained(model_name)
-        
-        print(f"加载模型到 {self.device}...")
-        # 对于 32B 模型，使用 8bit 量化以节省显存
-        
-        print("检测到大模型，启用 8bit 量化...")
-        self.model = Qwen3VLForConditionalGeneration.from_pretrained(
-            model_name,
-            dtype="auto",
-            device_map=self.device,  # 使用单个设备而不是 "auto"
-            trust_remote_code=True,
-            # load_in_8bit=True,
-            # attn_implementation="flash_attention_2",  
-        )
-        
-        print(f"✓ 模型加载成功！设备: {self.device}")
+        self.ollama_host = ollama_host.rstrip("/")
+        self.client = Client(host=self.ollama_host)
+
+        try:
+            available = self.client.list()
+            model_names = {m.model for m in available.models}
+            if self.model_name not in model_names:
+                print(f"⚠ 当前 Ollama 未发现模型 {self.model_name}，请先执行: ollama pull {self.model_name}")
+        except Exception as e:
+            print(f"⚠ 无法校验本地模型列表: {e}")
+
+        print(f"✓ Ollama 初始化完成: {self.ollama_host}")
     
     @staticmethod
     def load_extracted_images(images_dir="extracted_images", pages_dir="pages"):
@@ -122,7 +124,7 @@ class OCRProcessor:
     
     def build_messages(self, image_path, pre_page_path, next_page_path, cur_page_path):
         """
-        构建多图像消息格式
+        构建 Ollama 多图像消息格式
         
         Args:
             image_path (str): 目标图片路径
@@ -136,12 +138,12 @@ class OCRProcessor:
         messages = [
             {
                 "role": "user",
-                "content": [
-                    {"type": "image", "image": image_path},
-                    {"type": "image", "image": pre_page_path},
-                    {"type": "image", "image": cur_page_path},
-                    {"type": "image", "image": next_page_path},
-                    {"type": "text", "text": IMAGE_ANALYSIS_INSTRUCTION},
+                "content": IMAGE_ANALYSIS_INSTRUCTION,
+                "images": [
+                    image_path,
+                    pre_page_path,
+                    cur_page_path,
+                    next_page_path,
                 ],
             }
         ]
@@ -149,7 +151,7 @@ class OCRProcessor:
     
     def generate_image_description(self, image_path, pre_page_path, next_page_path, cur_page_path):
         """
-        使用 Qwen3-VL 生成图片描述
+        使用 Ollama 本地视觉模型生成图片描述
         
         Args:
             image_path (str): 目标图片路径
@@ -163,39 +165,24 @@ class OCRProcessor:
         try:
             print(f"正在分析图片: {image_path}")
             
-            # 构建消息
             messages = self.build_messages(image_path, pre_page_path, next_page_path, cur_page_path)
-            
-            
-            # 准备输入
-            inputs = self.processor.apply_chat_template(
-                messages,
-                tokenize = True,
-                add_generation_prompt = True,
-                return_tensors="pt",
-                return_dict = True,
+            response = self.client.chat(
+                model=self.model_name,
+                messages=messages,
+                options={
+                    "temperature": 0.2,
+                    "num_predict": 4096,
+                },
             )
-            inputs = inputs.to(self.device)
+
+            output_text = response.get("message", {}).get("content", "")
             
-            
-            generated_ids = self.model.generate(
-                **inputs,
-                max_new_tokens=4096,
-            )
-            
-            # 解码输出
-            generated_ids_trimmed = [
-                out_ids[len(in_ids):] 
-                for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-            ]
-            output_text = self.processor.batch_decode(
-                generated_ids_trimmed,
-                skip_special_tokens=True,
-                clean_up_tokenization_spaces=False
-            )
+            if not output_text:
+                print("✗ 模型返回为空")
+                return None
             
             print(f"✓ 分析完成")
-            return output_text
+            return [output_text]
             
         except Exception as e:
             print(f"✗ 生成描述失败: {e}")
@@ -230,7 +217,12 @@ class OCRProcessor:
             pre_page_path = page_list[pre_page_idx]["page_path"]
             cur_page_path = page_list[page_num]["page_path"]
             next_page_path = page_list[next_page_idx]["page_path"]
-            
+
+            print(f"image_path: {image_path}")
+            print(f"pre_page_path: {pre_page_path}")
+            print(f"cur_page_path: {cur_page_path}")
+            print(f"next_page_path: {next_page_path}")
+
             # 生成图片描述r
             description_json = self.generate_image_description(
                 image_path, pre_page_path, next_page_path, cur_page_path
@@ -240,9 +232,10 @@ class OCRProcessor:
                 print(f"⚠ 跳过第 {page_num} 页的图片 {img_info['image_index']}")
                 continue
             
+            description = description_json[0].replace('```json','').replace('```','').strip()
             # 尝试解析 JSON 结果
             try:
-                parsed_json = json.loads(description_json[0])
+                parsed_json = json.loads(description)
                 image_name = parsed_json.get("name", "Unknown") if parsed_json else "Unknown"
                 image_desc = parsed_json.get("description", description_json) if parsed_json else description_json
             except json.JSONDecodeError:
@@ -280,7 +273,7 @@ if __name__ == "__main__":
     
     # 加载已提取的图片和页面信息
     page_list, image_info_list = OCRProcessor.load_extracted_images(
-        images_dir="Essentials/Ch40",
+        images_dir="Database/images/Muscle_testing/Knee",
         pages_dir="pages"
     )
     
@@ -289,8 +282,8 @@ if __name__ == "__main__":
     results = processor.process_images_with_context(
         page_list=page_list,
         images_info=image_info_list,
-        pdf_name="Essentials.pdf",
-        part="Wrist",
+        pdf_name="Knee.pdf",
+        part="Knee",
         output_json="qwen_vl_descriptions_with_context.json"
     )
     

@@ -1,202 +1,532 @@
 [
   {
     "image_id": "page_1_img_0",
-    "image_name": "Stage 2 SNAC wrist with beaking and kissing osteophytes",
+    "image_name": "Proximal Articulation Components of the Tibia",
     "page_number": 1,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_1_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "Osteoarthritic change of a wrist with a scaphoid nonunion (SNAC), stage 2. Notable features include the “beaked” appearance of the radial styloid, cystic change along with a nonunion in the scaphoid, and “kissing” osteophytes on adjoining surfaces of the radius and scaphoid.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_1_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical line drawing, identified as Figure 14.2 in the text, illustrates the proximal articulation components of the knee joint. It labels key structures including the distal femur with its condyles, the proximal tibia and fibula with their plateaus and intercondylar eminences, and the lateral and medial menisci.",
+    "part": "Knee"
   },
   {
     "image_id": "page_1_img_1",
-    "image_name": "Wrist with Malunited Fracture",
+    "image_name": "Distal Articulation Components of the Femur",
     "page_number": 1,
     "image_index": 1,
-    "image_path": "Essentials/Ch40/page_1_img_1.png",
-    "filename": "Essentials.pdf",
-    "description": "Wrist osteoarthritis secondary to a malunited wrist fracture. Note the dorsal angulation of the distal articular surface and the reduced joint space. This patient also had significant osteopenia secondary to pain-induced lack of use.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_1_img_2",
-    "image_name": "Wrist with Malunited Fracture",
-    "page_number": 1,
-    "image_index": 2,
-    "image_path": "Essentials/Ch40/page_1_img_2.png",
-    "filename": "Essentials.pdf",
-    "description": "Wrist osteoarthritis secondary to a malunited wrist fracture. Note the dorsal angulation of the distal articular surface and the reduced joint space. This patient also had significant osteopenia secondary to pain-induced lack of use.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_1_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical diagram illustrates the distal articulation components of the femur, showing the lateral and medial femoral condyles, intercondylar groove, and cruciate ligaments (ACL and PCL). It also depicts the medial and lateral menisci situated between the femur and the tibia, with the fibula visible laterally. This image is identified as Figure 14.1 in the text on page 498, which discusses the osseous structures of the knee.",
+    "part": "Knee"
   },
   {
     "image_id": "page_2_img_0",
-    "image_name": "Wrist with Scapholunate Advanced Collapse Stage 2",
+    "image_name": "Inferior Posterior Surface of the Patella",
     "page_number": 2,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_2_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "Advanced wrist osteoarthritis secondary to SLAC (stage 3). Note the increased scapholunate space, the sclerosis in the radioscaphoid and lunocapitate joints, and the proximal migration of the capitate. Most notable in both views is the complete loss of normal wrist alignment.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_2_img_1",
-    "image_name": "Wrist Joint with Advanced Osteoarthritis",
-    "page_number": 2,
-    "image_index": 1,
-    "image_path": "Essentials/Ch40/page_2_img_1.png",
-    "filename": "Essentials.pdf",
-    "description": "Advanced wrist osteoarthritis secondary to SLAC (stage 3). Note the increased scapholunate space, the sclerosis in the radioscaphoid and lunocapitate joints, and the proximal migration of the capitate. Most notable in both views is the complete loss of normal wrist alignment.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_2_img_2",
-    "image_name": "Wrist Osteoarthritis with Scapholunate Advanced Collapse",
-    "page_number": 2,
-    "image_index": 2,
-    "image_path": "Essentials/Ch40/page_2_img_2.png",
-    "filename": "Essentials.pdf",
-    "description": "Wrist osteoarthritis secondary to scapholunate advanced collapse (SLAC), stage 2. Note the increased scapholunate space and the sclerosis of the radioscaphoid joint. Early osteophytes are clearly seen on the radial border of the scaphoid. The lateral view shows dorsal osteophytes as well as the dorsally angled lunate.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_2_img_3",
-    "image_name": "Lateral View of Wrist with Scapholunate Advanced Collapse Stage 2",
-    "page_number": 2,
-    "image_index": 3,
-    "image_path": "Essentials/Ch40/page_2_img_3.png",
-    "filename": "Essentials.pdf",
-    "description": "Wrist osteoarthritis secondary to scapholunate advanced collapse (SLAC), stage 2. Note the increased scapholunate space and the sclerosis of the radioscaphoid joint. Early osteophytes are clearly seen on the radial border of the scaphoid. The lateral view shows dorsal osteophytes as well as the dorsally angled lunate.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_2_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical diagram illustrates the articular surface of the patella, labeling key features such as the superior border, superior and inferior medial facets, lateral facet, and the inferior pole. It corresponds to Figure 14.3 in the text, which describes the patella as a triangular sesamoid bone with concave surfaces for articulation with the femur.",
+    "part": "Knee"
   },
   {
     "image_id": "page_3_img_0",
-    "image_name": "Osteoarthritic Wrist with Swelling",
+    "image_name": "Anterior View of the Tibiofemoral Joint",
     "page_number": 3,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_3_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "Clinical appearance of an osteoarthritic wrist that in this particular instance was secondary to a scaphoid nonunion. The diffuse radiodorsal swelling indicates some degree of synovitis.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_3_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical illustration displays the anterior view of the knee joint, labeling key structures including the lateral and medial femoral condyles, menisci, tibia, fibula, and supracondylar ridges. It corresponds to Figure 14.4 in the text, which serves as a visual reference for the section on intraarticular structures.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_3_img_1",
+    "image_name": "Tibial Attachments of Medial and Lateral Menisci",
+    "page_number": 3,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_3_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical diagram, identified as Figure 14.5 in the surrounding text, illustrates a superior view of the knee joint's intraarticular structures. It labels the lateral and medial menisci, the anterior and posterior cruciate ligaments, and the insertion points of the posterior horns of the menisci.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_4_img_0",
+    "image_name": "Posterior View of Knee Cruciate Ligaments",
+    "page_number": 4,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_4_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical diagram displays a posterior view of the knee joint, labeling the femur, tibia, fibula, and the Anterior and Posterior Cruciate Ligaments. It corresponds to Figure 14.6 on page 501, which details the structural anatomy and function of these ligaments in stabilizing the knee.",
+    "part": "Knee"
   },
   {
     "image_id": "page_5_img_0",
-    "image_name": "Postoperative Wrist Radiograph",
+    "image_name": "Posterior View of Knee Joint Structures",
     "page_number": 5,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_5_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "Plain radiographs of the patient seen in Figure 40.3 after she underwent a proximal row carpectomy. A terminal radial styloidectomy has also been performed to reduce impingement of the trapezium on the tip of the radius. Note how well the capitate articulates with the lunate fossa of the distal radius.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_5_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical illustration displays the posterior aspect of the knee joint, labeling structures such as the femur, tibia, fibula, MCL, PCL, and Lateral Collateral Ligament. It corresponds to Figure 14.7 on page 502, which is referenced in the text describing the Lateral Collateral Ligament.",
+    "part": "Knee"
   },
   {
     "image_id": "page_5_img_1",
-    "image_name": "Postoperative Wrist Radiograph",
+    "image_name": "Anatomical Diagram of the Knee Joint",
     "page_number": 5,
     "image_index": 1,
-    "image_path": "Essentials/Ch40/page_5_img_1.png",
-    "filename": "Essentials.pdf",
-    "description": "Plain radiographs of the patient seen in Figure 40.3 after she underwent a proximal row carpectomy. A terminal radial styloidectomy has also been performed to reduce impingement of the trapezium on the tip of the radius. Note how well the capitate articulates with the lunate fossa of the distal radius.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_5_img_2",
-    "image_name": "Intraoperative View of Proximal Row Carpectomy",
-    "page_number": 5,
-    "image_index": 2,
-    "image_path": "Essentials/Ch40/page_5_img_2.png",
-    "filename": "Essentials.pdf",
-    "description": "An intraoperative photograph during a proximal row carpectomy, showing healthy articular cartilage over the head of the capitate, with labeled anatomical structures including the pisiform, hamate, capitate, radio-lunate ligament, and radio-scapho-capitate ligament.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_5_img_3",
-    "image_name": "Postoperative Wrist Function",
-    "page_number": 5,
-    "image_index": 3,
-    "image_path": "Essentials/Ch40/page_5_img_3.png",
-    "filename": "Essentials.pdf",
-    "description": "Postoperative function 6 months after a proximal row carpectomy. The patient has recovered nearly a 100-degree arc of motion and has no pain.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_5_img_4",
-    "image_name": "Postoperative Wrist Function",
-    "page_number": 5,
-    "image_index": 4,
-    "image_path": "Essentials/Ch40/page_5_img_4.png",
-    "filename": "Essentials.pdf",
-    "description": "Postoperative function 6 months after a proximal row carpectomy. The patient has recovered nearly a 100-degree arc of motion and has no pain.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_5_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "A labeled line drawing illustrating the anterior view of the knee joint, identifying the femur, tibia, fibula, medial and lateral menisci, and collateral ligaments. The text on page 502 references this as Figure 14.8, using it to illustrate the Medial Collateral Ligament Complex and its anatomical relationships.",
+    "part": "Knee"
   },
   {
     "image_id": "page_6_img_0",
-    "image_name": "Postoperative Four-Bone Fusion with Hardware",
+    "image_name": "Posterior Structures of the Knee",
     "page_number": 6,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_6_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.9 A and B, Postoperative radiographs after scaphoid excision and four-bone fusion have been performed. ",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_6_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This anatomical illustration depicts the posterior aspect of the knee joint, highlighting key structures such as the medial and lateral gastrocnemius origins, the lateral collateral ligament, the popliteal fibular ligament, the semimembranosus attachment, and the popliteus tendon. It corresponds to Figure 14.9 found on page 503, which is referenced in the text discussing posterolateral knee structures and posterior ligaments.",
+    "part": "Knee"
   },
   {
-    "image_id": "page_6_img_1",
-    "image_name": "Postoperative Four-Bone Fusion with Hardware",
-    "page_number": 6,
-    "image_index": 1,
-    "image_path": "Essentials/Ch40/page_6_img_1.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.9 A and B, Postoperative radiographs after scaphoid excision and four-bone fusion have been performed. The image shows the wrist with multiple surgical pins securing the fusion between the radius, proximal row, and distal row of carpal bones. This procedure is indicated for severe arthritis involving multiple joints and is beneficial for patients with minimal or no wrist motion.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_6_img_2",
-    "image_name": "Postoperative Radiograph of Scaphoid Excision and Four-Bone Fusion",
-    "page_number": 6,
-    "image_index": 2,
-    "image_path": "Essentials/Ch40/page_6_img_2.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.10 A and B, A mature four-bone fusion after a secondary procedure to remove the pins seen in Figure 40.9. To avoid the second operative procedure, some may elect to leave the pins percutaneous and to remove them during an office visit.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_6_img_3",
-    "image_name": "Postoperative Wrist Fusion with Hardware",
-    "page_number": 6,
-    "image_index": 3,
-    "image_path": "Essentials/Ch40/page_6_img_3.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.10 A and B, A mature four-bone fusion after a secondary procedure to remove the pins seen in Figure 40.9. To avoid the second operative procedure, some may elect to leave the pins percutaneous and to remove them during an office visit.",
-    "part": "Wrist"
-  },
-  {
-    "image_id": "page_7_img_0",
-    "image_name": "Wrist Fusion with Plate",
-    "page_number": 7,
+    "image_id": "page_10_img_0",
+    "image_name": "Active Physiological Knee Extension in Sitting",
+    "page_number": 10,
     "image_index": 0,
-    "image_path": "Essentials/Ch40/page_7_img_0.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.11 A and B, a total wrist arthrodesis with a contoured plate and screws, showing the wrist in mild ulnar deviation in the anteroposterior radiograph. This is the optimal position for hand function in such patients. The patient also underwent excision of the distal ulna.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_10_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "The image depicts a man sitting on an examination table with one leg extended straight forward, demonstrating active physiological knee extension. This corresponds to Figure 14.11, which illustrates a non-weight bearing active range-of-motion movement performed in a sitting position.",
+    "part": "Knee"
   },
   {
-    "image_id": "page_7_img_1",
-    "image_name": "Wrist Fusion with Plate and Screws",
-    "page_number": 7,
+    "image_id": "page_10_img_1",
+    "image_name": "Active Physiological Knee Flexion in Sitting",
+    "page_number": 10,
     "image_index": 1,
-    "image_path": "Essentials/Ch40/page_7_img_1.png",
-    "filename": "Essentials.pdf",
-    "description": "FIGURE 40.11 A and B, a total wrist arthrodesis with a contoured plate and screws. In the anteroposterior radiograph, it is evident that the wrist is in mild ulnar deviation; in the lateral radiograph, the wrist appears to be in mild dorsiflexion. This is the optimal position for hand function in such patients. The patient also underwent excision of the distal ulna.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_10_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image shows a man sitting on an examination table with his right leg extended straight forward, demonstrating a specific physical therapy movement. It corresponds to Figure 14.11 on page 507, which is captioned 'Active Physiological Knee Flexion in Sitting' and is used to illustrate non-weight bearing active range-of-motion movements.",
+    "part": "Knee"
+  },
+  { 
+    "image_id": "page_10_img_2",
+    "image_name": "The Functional Squat Test",
+    "page_number": 10,
+    "image_index": 2,
+    "image_path": "Database/images/Muscle_testing/Knee/page_10_img_2.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a man performing a squat, which is identified in the accompanying text as 'The Functional Squat Test' (Figure 14.13). The text on page 507 explains that this test is used as an outcome measure for patients with knee osteoarthritis, involving squatting until pain limits the range or the heels come off the floor.",
+    "part": "Knee"
   },
   {
-    "image_id": "page_7_img_2",
-    "image_name": "Wrist with Advanced Degenerative Disease",
-    "page_number": 7,
+    "image_id": "page_11_img_0",
+    "image_name": "The Single Step Down Test",
+    "page_number": 11,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_11_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a man performing the single step-down test (Figure 14.14), standing on a small platform with one foot while lowering his body. According to the text on page 507, this test is used to measure functional control of the knee during eccentric and concentric movements.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_11_img_1",
+    "image_name": "The Hop Test",
+    "page_number": 11,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_11_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image, identified as Figure 14.15, depicts a male subject performing a hop test by jumping on one leg with arms extended for balance. The accompanying text explains that this test is used to determine functional activity tolerance and predict dynamic knee stability, particularly for patients post-ACL reconstruction.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_11_img_2",
+    "image_name": "Passive Physiological Knee Flexion",
+    "page_number": 11,
     "image_index": 2,
-    "image_path": "Essentials/Ch40/page_7_img_2.png",
-    "filename": "Essentials.pdf",
-    "description": "Advanced degenerative disease in a patient who underwent a proximal row carpectomy a few years before. Despite the radiographic appearance, the patient reported only mild pain.",
-    "part": "Wrist"
+    "image_path": "Database/images/Muscle_testing/Knee/page_11_img_2.png",
+    "filename": "Knee.pdf",
+    "description": "This image illustrates the technique for passive physiological knee flexion, identified as Figure 14.16 in the accompanying text. A clinician is shown holding a supine patient's leg to gently move the knee into flexion, assessing for range of motion and pain response.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_13_img_0",
+    "image_name": "Knee Extension with Abduction",
+    "page_number": 13,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_13_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "Labeled as Figure 14.20, this image illustrates a manual therapy technique for knee extension with abduction. A clinician is shown grasping the patient's lateral ankle while the patient lies in a supine position to perform the movement.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_13_img_1",
+    "image_name": "Knee Extension with Adduction",
+    "page_number": 13,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_13_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.21 Knee Extension with Adduction. Step Six: As the clinician extends the knee, using side bending of the trunk and a simultaneous force on these contact areas with the hands, the clinician then produces an extension-adduction movement of the knee (adduction movement of the tibia). Movement will occur up until pain is reproduced, then gently past this point as tolerated. Step Seven: As needed, the clinician can apply force (overpressure) to the end of range to assess for pain response.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_14_img_0",
+    "image_name": "Tibial Internal Rotation at 90 Degrees of Knee Flexion",
+    "page_number": 14,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_14_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing a manual therapy technique on a supine patient, specifically demonstrating tibial internal rotation. As identified in Figure 14.22 on page 511, the maneuver involves flexing the knee to approximately 90 degrees while the clinician cradles the tibia and grasps the foot to apply passive rotation.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_14_img_1",
+    "image_name": "Tibial External Rotation",
+    "page_number": 14,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_14_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.23 Tibial External Rotation at 90 Degrees of Knee Extension. Step Four: The clinician applies a passive external rotation to the first point of pain. Repeated movements or sustained holds are applied to determine if the movements reduce pain. The activity is repeated toward end range.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_16_img_0",
+    "image_name": "Anterior-to-Posterior Mobilization of the Tibiofemoral Joint",
+    "page_number": 16,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_16_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "The image depicts a clinician performing an anterior-to-posterior mobilization technique on a patient's knee. As identified by Figure 14.25 in the context, the clinician places thumbs on the tibial tubercle to gently move the tibia on the femur in a posterior direction.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_16_img_1",
+    "image_name": "Medial Glide of the Tibia on the Femur",
+    "page_number": 16,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_16_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This photograph, identified as Figure 14.28 in the accompanying text, depicts a clinician performing a medial shear mobilization on a patient's knee. It illustrates the technique described in the 'Medial and Lateral Shear of the Tibiofemoral Joint' section, where the clinician stabilizes the femur while applying a medially directed movement to the tibia.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_17_img_0",
+    "image_name": "Lateral Glide of Tibia on Femur",
+    "page_number": 17,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_17_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.29 Lateral Glide of the Tibia on the Femur. Step Six: For lateral shear, the clinician uses one hand to grasp the lateral aspect of the distal femur, in the region of the condyles, while with the other hand the clinician grasps the lateral aspect of the proximal tibia. Step Seven: The clinician will stabilize the femur while applying a laterally directed movement of the tibia on the femur, stopping at the first point of pain.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_17_img_1",
+    "image_name": "Theoretical Movement of the Anterior Horn of the Meniscus",
+    "page_number": 17,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_17_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This line drawing diagram illustrates the anatomy of the knee joint, specifically labeling the femur, tibia, fibula, and anterior horn of the meniscus. It depicts a mobilization setup with a block placed under the posterior femur, demonstrating the theoretical movement where posterior glide of the tibia on the femur results in anterior movement of the meniscus.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_18_img_0",
+    "image_name": "Theoretical Movement of the Posterior Horn of the Meniscus",
+    "page_number": 18,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_18_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This diagram illustrates the theoretical movement of the posterior horn of the meniscus within the knee joint, showing the femur, tibia, and fibula. It corresponds to Figure 14.27, which demonstrates how anterior movement of the tibia on the femur in a flexed position forces posterior migration of the meniscus.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_18_img_1",
+    "image_name": "Tibiofemoral Joint Rotation",
+    "page_number": 18,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_18_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.30 Medial and Anterior Rotation of the Tibia on the Femur. Step One: The patient assumes a hooklying position. The clinician stabilizes the foot by sitting on the dorsum. Step Two: The clinician grabs the lateral half of the tibia with one hand and stabilizes the femur with the other. The clinician then applies a medially directed and anterior rotation to the lateral half of the tibia.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_21_img_0",
+    "image_name": "Lateral Glide of the Patella",
+    "page_number": 21,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_21_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a manual therapy technique where a clinician places their fingers against the medial border of a patient's patella to perform a lateral glide. It corresponds to Figure 14.36 on page 518, which is part of the section on 'Medial and Lateral Movements of the Patellofemoral Joint'.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_21_img_1",
+    "image_name": "Medial Glide of the Patella",
+    "page_number": 21,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_21_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a manual therapy technique known as the medial glide of the patella, corresponding to Figure 14.37. It shows a clinician's hands positioned on either side of the patient's knee to produce a medially directed movement of the patella.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_22_img_0",
+    "image_name": "Medial Tilt of the Patella",
+    "page_number": 22,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_22_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing a medial tilt maneuver on a patient's patella, corresponding to Figure 14.38 in the provided text. The hands are positioned on the knee to push the medial half of the patella in an anterior-to-posterior direction, illustrating a technique from the 'Medial and Lateral Tilt Movements of the Patellofemoral Joint' section.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_22_img_1",
+    "image_name": "Lateral Patellar Tilt Assessment",
+    "page_number": 22,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_22_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.39 Lateral Tilt of the Patella. Step Six: To create a lateral tilt, the clinician can follow the above steps, but will produce lateral tilting movement by producing movement in an anterior-to-posterior direction on the lateral half of the patella. The clinician should also be sure to block the medial border of the patella to prevent a medial movement of the patella during the lateral tilting movement.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_23_img_0",
+    "image_name": "Medial Rotation of the Patella",
+    "page_number": 23,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_23_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing a manual therapy technique on a patient's knee, specifically grasping the patella with both hands. Based on the accompanying text in Chapter 14, this corresponds to Figure 14.40, illustrating the 'Medial Rotation of the Patella' where the clinician rotates the apex of the patella medially while the patient is in a supine position.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_23_img_1",
+    "image_name": "Medial Patellar Rotation Technique",
+    "page_number": 23,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_23_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.40 Medial Rotation of the Patella. Step Three: To produce a medially directed rotation, the clinician will rotate the apex of the patella medially, stopping at the first point of pain. The clinician may find it helpful when producing these movements to take up tissue slack around the knee. This can be accomplished by placing the hands on the patella as described in Step Two (the following describes medially directed movement) but place the cephalic hand medially (about the 2 o'clock position) and the caudal hand just opposite the cephalic hand (about the 8 o'clock position). Now firmly grasping the soft tissues move your hands back to the original position. This technique should allow the clinician to feel more localized movement of the patella versus the surrounding soft tissues. Step Four: The clinician will assess for quality of motion and assess for reproduction of concordant signs while moving the patella beyond the first point of pain, progressing toward end range as the patient's complaint of pain allows. Step Five: Repeated movements are then performed to the point of range/movement that pain allows, to assess the response of the repeated movements on the patient's pain (or like symptoms).",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_25_img_0",
+    "image_name": "Anterior-to-Posterior Tibiofibular Glide",
+    "page_number": 25,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_25_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.43 Anterior to Posterior Glide of the Tibial Fibular Joint. Step One: The patient assumes the sidelying position with the area examined facing upward. The clinician should aim to position the lower extremity in a relatively neutral position (i.e., pillow between knees, etc.). Step Two: The clinician stands in front of the patient and palpates for the posterior margin of the head of the fibula. Step Three: The clinician then places the pads of his or her thumbs against the anterior margin of the head of the fibula. Step Four: Using the thumbs, produce a posterior-to-anterior directed movement, stopping at the first point of pain. Step Five: The clinician will assess for quality of motion and assess for reproduction of concordant signs while moving the fibula beyond the first point of pain, progressing toward end range as the patient's complaint of pain allows. Step Six: Repeated movements are then performed to the point of range/movement that pain allows, to assess the response of the repeated movements on the patient's pain (or like symptoms). Step Seven: The previously described movements should then be performed with compression. This is achieved by leaving one thumb on the anterior margin of the fibula and taking the interthenar groove of the other hand and placing it on top of the thumb. Compression is achieved by pushing downward toward the table while simultaneously producing the anterior-to-posterior movement. Steps Five and Six are then followed while using compression.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_25_img_1",
+    "image_name": "Cephalic Glide of the Fibula",
+    "page_number": 25,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_25_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image, labeled as Figure 14.44, depicts a clinician performing a manual therapy technique on a patient's lower leg while the patient is in a sidelying position. It illustrates the 'Cephalic Glide of the Fibula' as part of the assessment for the Tibial-Fibular Joint, where the clinician grasps the rear-foot to produce movement.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_28_img_0",
+    "image_name": "McMurray's Test",
+    "page_number": 28,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_28_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing McMurray's test, a clinical special test for meniscal tears. It corresponds to Figure 14.48 found on page 525, showing the manipulation of the patient's knee.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_29_img_0",
+    "image_name": "Apley's Compression Test Demonstration",
+    "page_number": 29,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_29_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing Apley's Compression Test, which is labeled as Figure 14.49 on page 526. The patient is lying in a prone position with the knee flexed, while the clinician grasps the foot to apply a compressive force through the tibia to test for meniscal injuries.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_29_img_1",
+    "image_name": "Apley's Distraction Test",
+    "page_number": 29,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_29_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts the Apley's Distraction Test, identified as Figure 14.50 in the accompanying text. It shows a clinician applying a distraction force and twisting motion to a patient's knee while the patient lies prone, a procedure used to differentiate between meniscal and capsuloligamentous injuries.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_31_img_0",
+    "image_name": "The Pivot Shift Test",
+    "page_number": 31,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_31_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image illustrates the Pivot Shift Test, a clinical assessment used to detect anterior cruciate ligament instability. It depicts a clinician holding a patient's leg at the ankle and knee while the patient lies supine, preparing to guide the knee into extension to observe for subluxation and reduction.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_33_img_0",
+    "image_name": "The Posterior Drawer Test",
+    "page_number": 33,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_33_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing the Posterior Drawer Test on a patient's knee. As identified in the text on page 530 (Figure 14.54), this clinical special test is designed to measure posterior displacement of the tibia on a fixed femur to detect Posterior Cruciate Ligament (PCL) instability.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_33_img_1",
+    "image_name": "The Posterior Sag Sign",
+    "page_number": 33,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_33_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image illustrates the Posterior Sag Sign, a clinical test used to detect posterior cruciate ligament (PCL) instability. It depicts a clinician holding a patient's foot while the patient lies supine with the hip and knee flexed, allowing for visual assessment of posterior tibial translation.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_34_img_0",
+    "image_name": "The Quadriceps Active Test",
+    "page_number": 34,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_34_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing the Quadriceps Active Test on a patient lying in a supine position. Identified as Figure 14.56 in the accompanying text, the procedure involves the patient flexing their hip to 45 degrees and knee to 90 degrees while the clinician assesses for anterior tibial translation.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_35_img_0",
+    "image_name": "The Dial Test Performed in Prone at 90 Degrees",
+    "page_number": 35,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_35_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing the Dial Test on a patient lying prone with knees flexed. According to the accompanying text, this test is designed to determine isolated posterolateral corner instability by comparing external rotation of the knees.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_37_img_0",
+    "image_name": "Vastus Medialis Coordination Test",
+    "page_number": 37,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_37_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "The image depicts a clinician performing the Vastus Medialis Coordination Test on a patient lying in a supine position. The clinician supports the patient's leg, which is slightly flexed, while the patient is instructed to extend the knee slowly to assess coordination.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_37_img_1",
+    "image_name": "Patellar Apprehension Test",
+    "page_number": 37,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_37_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image illustrates the Patellar Apprehension Test, labeled as Figure 14.61, where a clinician applies a lateral glide to the patient's knee cap while the patient lies in a supine position to check for pain or apprehension.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_38_img_0",
+    "image_name": "Clarke's Test for Patella Grinding",
+    "page_number": 38,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_38_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing Clarke's Test on a patient lying in a supine position. The clinician applies an inferior force and slight compression to the patella while the patient is instructed to contract their quadriceps to assess for patellofemoral grinding pain.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_38_img_1",
+    "image_name": "Eccentric Step Test Demonstration",
+    "page_number": 38,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_38_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image, identified as Figure 14.63, depicts a patient performing the Eccentric Step Test by standing on a step with arms extended for balance. The associated text explains that the test involves an eccentric load to the knee during a controlled step down to reproduce pain.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_39_img_0",
+    "image_name": "Prone Compression Mobilization of the Tibiofemoral Joint",
+    "page_number": 39,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_39_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing a manual therapy technique on a patient lying in a prone position. It corresponds to Figure 14.64, illustrating the 'Compression Mobilization of the Tibial-Femoral Joint' where the clinician stabilizes the tibia and applies a compressive load.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_40_img_0",
+    "image_name": "Supine Tibiofemoral Compression",
+    "page_number": 40,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_40_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "Figure 14.65 Supine Compression Mobilization of the Tibiofemoral Joint. Step Four: The procedure can also be performed using similar hand-holds with the patient in a supine position.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_40_img_1",
+    "image_name": "Posterior Anterior Scoop Mobilization",
+    "page_number": 40,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_40_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "The image depicts a person sitting on a treatment table holding their knee, illustrating the 'Posterior Anterior Scoop Mobilization' technique labeled as Figure 14.66. The accompanying text explains that this mobilization targets the posterior horn of the meniscus and involves a curvilinear posterior-to-anterior pull near end-range flexion.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_41_img_0",
+    "image_name": "Compression Mobilization of the Tibiofemoral Joint",
+    "page_number": 41,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_41_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "The image depicts a clinician performing a manual therapy technique on a patient's knee while the patient is in a prone position. Based on the text in the following page (Figure 14.65), this image illustrates the prone variation of the 'Compression Mobilization of the Tibiofemoral Joint,' where the clinician applies a load to the tibia.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_41_img_1",
+    "image_name": "Tibial Shear at 90 Degrees of Flexion",
+    "page_number": 41,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_41_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image shows a clinician performing a manual therapy technique on a patient's knee, specifically a tibial shear mobilization. Identified as Figure 14.68 in the text, the procedure is described as targeting the knee capsule when performed at greater degrees of flexion.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_41_img_2",
+    "image_name": "Rotation Mobilization at 90 Degrees of Flexion",
+    "page_number": 41,
+    "image_index": 2,
+    "image_path": "Database/images/Muscle_testing/Knee/page_41_img_2.png",
+    "filename": "Knee.pdf",
+    "description": "This image displays a close-up view of a clinician's hands clasped around a patient's lower leg to perform a rotational mobilization technique. It corresponds to Figure 14.69, which illustrates 'Rotation Mobilization at 90 Degrees of Flexion' within the context of tibial rotation at multiple ranges.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_42_img_0",
+    "image_name": "Isometric Hold-Relax Hamstring Stretching",
+    "page_number": 42,
+    "image_index": 0,
+    "image_path": "Database/images/Muscle_testing/Knee/page_42_img_0.png",
+    "filename": "Knee.pdf",
+    "description": "This image, identified as Figure 14.70 on page 539, depicts a clinician performing an isometric hold-relax hamstring stretch on a supine patient. The accompanying text describes the technique where the patient's leg is prepositioned in a 90/90 posture and the clinician braces the patient's heel while the patient performs an isometric contraction.",
+    "part": "Knee"
+  },
+  {
+    "image_id": "page_42_img_1",
+    "image_name": "Tibiofemoral Distraction Manipulation of the Knee",
+    "page_number": 42,
+    "image_index": 1,
+    "image_path": "Database/images/Muscle_testing/Knee/page_42_img_1.png",
+    "filename": "Knee.pdf",
+    "description": "This image depicts a clinician performing a tibiofemoral distraction manipulation on a patient lying in a prone position. The associated text describes the technique as a rapid distraction of the tibia from the femur, which is used to treat knee conditions.",
+    "part": "Knee"
   }
 ]
