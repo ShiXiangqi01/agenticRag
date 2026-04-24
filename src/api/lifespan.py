@@ -7,10 +7,10 @@ from loguru import logger
 from dotenv import load_dotenv
 load_dotenv()
 
-# from fundus_murag.agent.chat_assistant_factory import ChatAssistantFactory
-# from fundus_murag.agent.fundus_multi_agent_system_factory import FundusMultiAgentSystemFactory
-# from fundus_murag.data.user_image_store import UserImageStore
+from src.data.user_image_store import UserImageStore
 from src.data.vector_db import VectorDB
+from src.agent.chat_assistant_factory import ChatAssistantFactory
+from src.agent.agentic_rag_system_factory import AgenticRagSystemFactory
 
 
 @asynccontextmanager
@@ -20,13 +20,16 @@ async def api_lifespan(app: FastAPI):
     mlflow.set_experiment("/agentic")
     mlflow.openai.autolog()
     logger.info("Starting Agentic! Data API")
-    # chat_assistant_factory = ChatAssistantFactory()
-    # fundus_agent_factory = FundusMultiAgentSystemFactory()
+    chat_assistant_factory = ChatAssistantFactory()
+    agentic_rag_system_factory= AgenticRagSystemFactory()
     vdb = VectorDB()
-    # user_image_store = UserImageStore()
+    user_image_store = UserImageStore()
     yield
     # Shutdown
     vdb.close()
     del vdb
+    del chat_assistant_factory
+    del agentic_rag_system_factory
+    del user_image_store
 
     logger.info("Stopping Agentic! Data API")

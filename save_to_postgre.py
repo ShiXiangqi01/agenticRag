@@ -2,8 +2,8 @@ import base64
 import json, psycopg2, sys, os
 
 
-json_path = sys.argv[1] if len(sys.argv) > 1 else 'my_file.json'
-table_name = sys.argv[2] if len(sys.argv) > 2 else 'my_table'
+json_path = sys.argv[1] if len(sys.argv) > 1 else 'qwen_vl_descriptions_with_context.json'
+table_name = sys.argv[2] if len(sys.argv) > 2 else 'image_records'
 
 with open(json_path, encoding='utf-8') as f:
     data = json.load(f)
@@ -56,7 +56,7 @@ for item in data:
     cur.execute(f"""
         INSERT INTO {table_name} (image_name, page_number, image_index,image_path,file_name_id,description,body_part_id, base64_image)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], "cb6f8b06-a9fc-4432-ad00-2823bf0d8316", item['description'], "7e45e7da-2729-4eb2-b647-913aa3515f79", base64_image))
+    """, (item['image_name'], item['page_number'], item['image_index'], item['image_path'], "2a7067b0-4abb-4dd6-ad2b-6a8f8fa76c38", item['description'], "0f7a7a47-e71d-4dd9-8765-6a5fd6850417", base64_image))
 
     
 

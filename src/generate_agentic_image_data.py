@@ -38,12 +38,12 @@ class BaseEmbeddingDataFrameSchema(BaseModel):
     embedding:list[list[float]] = Field(default_factory=list)
 
 class ImagesEmbeddingDataFrameSchema(BaseEmbeddingDataFrameSchema):
-    postgreDB_id: list[int] = Field(default_factory=list)
+    postgreDB_id: list[str] = Field(default_factory=list)
 
 def _load_dataframes(root: Path) -> pd.DataFrame:
 
-    images_df = pd.read_parquet(root / "images.parquet")
-    print(f"Loaded {len(images_df)} records from images.parquet")
+    images_df = pd.read_parquet(root / "imagess.parquet")
+    print(f"Loaded {len(images_df)} records from imagess.parquet")
 
     return images_df
 
@@ -55,6 +55,38 @@ def _generate_images_img_embeddings(
 ) -> pd.DataFrame:
     data = ImagesEmbeddingDataFrameSchema()
     client = AgenticMLClient(agentic_ml_url)
+
+    def _process_batch(batch_items: list[dict]) -> None:
+        if not batch_items:
+            return
+
+        valid_items = []
+        image_bytes = []
+        for item in batch_items:
+            try:
+                image_path = Path(item["image_path"])
+                image_bytes.append(read_image_bytes(image_path))
+                valid_items.append(item)
+            except Exception as e:
+                print(f"could not read image from {image_path}: {e}")
+
+        if not image_bytes:
+            return
+
+        image_inputs = EmbeddingsInput(input_data=image_bytes, input_type="image")
+        image_embedding_outputs: EmbeddingsOutput = client._get_embeddings(
+            image_inputs,
+            None,
+            False,
+        )
+
+        for item, embedding in zip(valid_items, image_embedding_outputs.embeddings):
+            data.postgreDB_id.append(item["image_id"])
+            data.vectorDB_id.append(item["vecdb_id"])
+            data.embedding_type.append(EmbeddingType.IMAGE)
+            data.embedding_name.append(EmbeddingName.IMAGES_IMG)
+            data.embedding_model.append(image_embedding_outputs.embedding_model)
+            data.embedding.append(embedding)
 
     batch = []
     for _, row in tqdm(
@@ -68,30 +100,10 @@ def _generate_images_img_embeddings(
         if len(batch) < batch_size:
             continue
 
-        image_bytes = []
-        for b in batch:
-            try:
-                image_path = Path(b["image_path"])
-                image_bytes.append(read_image_bytes(image_path))
-            except Exception as e:
-                print(f"could not read image from {image_path}: {e}")
-        
-        image_inputs = EmbeddingsInput(input_data = image_bytes, input_type="image")
-        image_embedding_outputs: EmbeddingsOutput = client._get_embeddings(
-            image_inputs,
-            None,
-            False,
-        )
-
-        for b, embedding in zip(batch, image_embedding_outputs.embeddings):
-            data.postgreDB_id.append(b["image_id"])
-            data.vectorDB_id.append(b["vecdb_id"])
-            data.embedding_type.append(EmbeddingType.IMAGE)
-            data.embedding_name.append(EmbeddingName.IMAGES_IMG)
-            data.embedding_model.append(image_embedding_outputs.embedding_model)
-            data.embedding.append(embedding)
-
+        _process_batch(batch)
         batch = []
+
+    _process_batch(batch)
     
     return pd.DataFrame(data.model_dump())
 
@@ -105,6 +117,26 @@ def _generate_images_text_embeddings(
     data = ImagesEmbeddingDataFrameSchema()
     client = AgenticMLClient(agentic_ml_url)
 
+    def _process_batch(batch_items: list[dict]) -> None:
+        if not batch_items:
+            return
+
+        descriptions = [item["description"] for item in batch_items]
+        text_inputs = EmbeddingsInput(input_data=descriptions, input_type="text")
+        text_embedding_outputs: EmbeddingsOutput = client._get_embeddings(
+            text_inputs,
+            None,
+            False,
+        )
+
+        for item, embedding in zip(batch_items, text_embedding_outputs.embeddings):
+            data.postgreDB_id.append(item["image_id"])
+            data.vectorDB_id.append(item["vecdb_id"])
+            data.embedding_type.append(EmbeddingType.TEXT)
+            data.embedding_name.append(EmbeddingName.IMAGES_DESCRIPTION)
+            data.embedding_model.append(text_embedding_outputs.embedding_model)
+            data.embedding.append(embedding)
+
     batch = []
     for _, row in tqdm(
         images_df.iterrows(),
@@ -117,23 +149,10 @@ def _generate_images_text_embeddings(
         if len(batch) < batch_size:
             continue
 
-        descriptions = [b["description"] for b in batch]
-        text_inputs = EmbeddingsInput(input_data = descriptions, input_type="text")
-        text_embedding_outputs: EmbeddingsOutput = client._get_embeddings(
-            text_inputs,
-            None,
-            False,
-        )
-
-        for b, embedding in zip(batch, text_embedding_outputs.embeddings):
-            data.postgreDB_id.append(b["image_id"])
-            data.vectorDB_id.append(b["vecdb_id"])
-            data.embedding_type.append(EmbeddingType.TEXT)
-            data.embedding_name.append(EmbeddingName.IMAGES_DESCRIPTION)
-            data.embedding_model.append(text_embedding_outputs.embedding_model)
-            data.embedding.append(embedding)
-
+        _process_batch(batch)
         batch = []
+
+    _process_batch(batch)
     
     return pd.DataFrame(data.model_dump())
 
@@ -280,7 +299,7 @@ def _generate_dataframes(
         out_path: Path,
         n_proc: int = 4,
 ):
-    images_data_path = agenticDB_data_root / "image_records.json"
+    images_data_path = agenticDB_data_root / "image_recordss.json"
     # images_pix_dir = agenticDB_data_root / "images_pix"
     files_path = agenticDB_data_root / "files.json"
     body_part_path = agenticDB_data_root / "body_part.json"
@@ -294,8 +313,8 @@ def _generate_dataframes(
         None,
         n_proc,
     )
-    images_df.to_parquet(out_path / "images.parquet", index=False)
-    print(f"Wrote {len(images_df)} records to images.parquet")
+    images_df.to_parquet(out_path / "imagess.parquet", index=False)
+    print(f"Wrote {len(images_df)} records to imagess.parquet")
 
 
 
@@ -319,8 +338,8 @@ def _generate_embeddings(
             batch_size,
             n_proc,
         )
-        images_embeddings.to_parquet(out_path / "agentic_images_embeddings.parquet", index=False)
-        print(f"Wrote {len(images_embeddings)} records to agentic_images_embeddings.parquet")
+        images_embeddings.to_parquet(out_path / "agentic_images_embeddingss.parquet", index=False)
+        print(f"Wrote {len(images_embeddings)} records to agentic_images_embeddingss.parquet")
 
 
 def main(
@@ -328,7 +347,7 @@ def main(
         agenticDB_data_root: str | Path = "/home/xiangqi/xiangqi/agenticRag/src/data/jsons",
         agentic_ml_url: str = "http://localhost:8001",
         batch_size: int = 25,
-        gen_dataframes: bool = False,
+        gen_dataframes: bool = True,
         gen_images_embeddings: bool = True,
         n_proc: int = 1,
 ):
@@ -352,7 +371,7 @@ def main(
             agentic_ml_url,
             batch_size,
             gen_images_embeddings,
-            n_proc,83
+            n_proc,
         )
 
 if __name__ == "__main__":

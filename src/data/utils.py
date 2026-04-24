@@ -116,3 +116,8 @@ def array_to_list(arr) -> list:
     if isinstance(arr, np.ndarray):
         return arr.tolist()
     return arr
+
+def encode_image(image: Image.Image) -> str:
+    buffered = io.BytesIO()
+    image.save(buffered, format="JPEG")
+    return base64.b64encode(buffered.getvalue()).decode("utf-8")

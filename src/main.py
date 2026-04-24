@@ -31,10 +31,18 @@ app.add_middleware(GZipMiddleware, minimum_size=500)
 from src.api.routers import (  
 
     search,
+    user_image,
+    look_up,
+    assistant,
+    agent,
 
 )
 
 app.include_router(search.router)
+app.include_router(user_image.router)
+app.include_router(look_up.router)
+app.include_router(assistant.router)
+app.include_router(agent.router)
 
 
 

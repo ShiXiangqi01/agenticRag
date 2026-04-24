@@ -13,5 +13,13 @@
 		"character_path" : "Stretching\/Neck.pdf",
 		"file_name_id" : "b9979c1e-e821-4800-bc43-d371a6308b09",
 		"body_part_id" : "35b8f3bd-d0f0-453e-8c89-63b3085eed24"
+	},
+	{
+		"doc_id" : "1aece89a-36fe-48a3-ad11-080176e0f757",
+		"character_name" : "Knee",
+		"character_path" : "Muscle_testing\/Knee.pdf",
+		"file_name_id" : "2a7067b0-4abb-4dd6-ad2b-6a8f8fa76c38",
+		"body_part_id" : "0f7a7a47-e71d-4dd9-8765-6a5fd6850417"
 	}
+	
 ]}

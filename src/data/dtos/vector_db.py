@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from src.data.dtos.postgredb import (
-    PostgreImage,
-    PostgreImageInternal,
+    PostgreImageBase,
+    PostgreImageBaseInternal,
     PostgreText,
     PostgreTextInternal,
 )
@@ -11,7 +11,7 @@ class SimilaritySearchResultBase(BaseModel):
     distance: float
 
 class AgenticImagesSemanticSearchResult(SimilaritySearchResultBase):
-    image: PostgreImageInternal | PostgreImage
+    image: PostgreImageBase | PostgreImageBaseInternal
 
 class AgenticTextsSemanticSearchResult(SimilaritySearchResultBase):
     text: PostgreTextInternal | PostgreText

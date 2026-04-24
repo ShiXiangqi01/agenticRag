@@ -7,5 +7,9 @@
 	{
 		"body_part_id" : "7e45e7da-2729-4eb2-b647-913aa3515f79",
 		"part_name" : "Wrist"
+	},
+	{
+		"body_part_id" : "0f7a7a47-e71d-4dd9-8765-6a5fd6850417",
+		"part_name" : "Knee"
 	}
 ]}

@@ -6,10 +6,12 @@ import mlflow
 from mlflow.entities import SpanType
 import tqdm
 import weaviate
-from weaviate.classes.query import MetadataQuery
+from weaviate.classes.query import Filter, MetadataQuery
 from src.data.dtos.postgredb import (
     PostgreFile,
     PostgreImage,
+    PostgreImageBase,
+    PostgreImageBaseInternal,
     PostgreImageInternal,
     PostgreText,
     PostgreTextInternal,
@@ -30,6 +32,7 @@ from src.data.dtos.vector_db import (
 import pandas as pd
 from src.config import load_config
 from src.ml.client import AgenticMLClient
+from sentence_transformers import SentenceTransformer
 from src.data.schema import (
     AGENTIC_IMAGES_SCHEMA_NAME,
     AGENTIC_IMAGES_SCHEMA_PROPS,
@@ -38,6 +41,8 @@ from src.data.schema import (
     AGENTIC_TEXTS_SCHEMA_PROPS,
     AGENTIC_TEXTS_SCHEMA_VECTORIZER,
 )
+from src.data.user_image_store import UserImageStore
+from src.agent.tools.query_rewriter import QueryRewriter
 
 class VectorDB(metaclass=SingletonMeta):
     
@@ -45,8 +50,9 @@ class VectorDB(metaclass=SingletonMeta):
         self._config = load_config()
         self._client = self._connect_to_weaviate()
         self._agentic_ml_client = AgenticMLClient(self._config.agentic.ml_url)
-        # self._query_rewriter = QueryRewriter()
-        # self._user_image_store = UserImageStore()
+        self._model = SentenceTransformer(self._config.agentic.model_name)
+        self._query_rewriter = QueryRewriter()
+        self._user_image_store = UserImageStore()
 
         self._images_df = load_postgreDB_images_df(
             self._config.data.images_df_file,
@@ -134,14 +140,14 @@ class VectorDB(metaclass=SingletonMeta):
             vectorizer_config=AGENTIC_TEXTS_SCHEMA_VECTORIZER,
         ) and self._get_client().collections.get(AGENTIC_TEXTS_SCHEMA_NAME)
 
-    def _create_agentic_images_from_query_results(self, res: Any) -> list[PostgreImage | PostgreImageInternal]:
+    def _create_agentic_images_from_query_results(self, res: Any) -> list[PostgreImageBase | PostgreImageBaseInternal]:
 
         images = []
         for res_obj in res.objects:
             props = res_obj.properties
             image_internal = None
             embeddings = dict()
-            image_record = PostgreImage(
+            image_record = PostgreImageBase(
                 image_id = props["postgre_id"],
                 vector_id = props["vector_id"],
                 image_name = props["image_name"],
@@ -151,7 +157,6 @@ class VectorDB(metaclass=SingletonMeta):
                 file_name = props["file_name"],
                 description = props["description"],
                 body_part = props["body_part"],
-                base64_image = props["base64_image"]
             )
 
             embeddings = {}
@@ -160,7 +165,7 @@ class VectorDB(metaclass=SingletonMeta):
                     embeddings = res_obj.vector
                 else:
                     embeddings["default"] = res_obj.vector
-                image_internal = PostgreImageInternal(
+                image_internal = PostgreImageBaseInternal(
                     **image_record.model_dump(),
                     embeddings=embeddings,
                 )
@@ -178,6 +183,7 @@ class VectorDB(metaclass=SingletonMeta):
             text_record = PostgreText(
                 doc_id = props["doc_id"],
                 vector_id = props["vector_id"],
+                character_name = props["character_name"],
                 character_path = props["character_path"],
                 file_name = props["file_name"],
                 body_part = props["body_part"],
@@ -219,7 +225,7 @@ class VectorDB(metaclass=SingletonMeta):
                 desc = "Importing AgenticDB images data into Weaviate",
                 leave = True,
             ):
-                img_path = (self._config.data.agentic_data_root + "/images/" + row["image_path"]).replace("//", "/")
+                img_path = (self._config.data.agentic_data_root + row["image_path"]).replace("//", "/")
                 try:
                     base64_image = read_image_bytes(img_path)
                 except Exception:
@@ -281,6 +287,7 @@ class VectorDB(metaclass=SingletonMeta):
                     "vector_id": row["vector_id"],
                     "doc_id": row["doc_id"],
                     "character_path": row["character_path"],
+                    "character_name": row["character_name"],
                     "file_name": row["file_name"],
                     "body_part": row["body_part"],
                     "content": row["content"],  
@@ -408,7 +415,7 @@ class VectorDB(metaclass=SingletonMeta):
         filter = None
         collection = self._get_client().collections.get("AgenticImages")
 
-        return_props = list(PostgreImage.model_fields.keys())
+        return_props = list(PostgreImageBase.model_fields.keys())
         include_vector = False
 
         if return_internal_images:
@@ -487,6 +494,125 @@ class VectorDB(metaclass=SingletonMeta):
             simsearch_results.append(res)
         
         return simsearch_results
+
+    def _find_texts_content_relative_lexical_search(
+        self,
+        query: str,
+        top_k: int = 5,
+        search_in_character_name: bool = True,
+        search_in_body_part: bool = True,
+        search_in_file_name: bool = True,
+    ) -> list[PostgreText]:
+        """
+        Perform a lexical search for `AgenticTexts`s using a query string.
+        This searches in the character_name, body_part, file_name fields.
+
+        Args:
+            query (str): The search query string.
+            top_k (int, optional): The number of top results to return. Defaults to 5.
+            search_in_character_name (bool, optional): Whether to search in the character_name field. Defaults to True.
+            search_in_body_part (bool, optional): Whether to search in the body_part field. Defaults to True.
+            search_in_file_name (bool, optional): Whether to search in the file_name field. Defaults to True.
+
+        Returns:
+            list[PostgreText]: A list of `AgenticTexts` that match the search query.
+        """ 
+
+        collection = self._get_client().collections.get(AGENTIC_TEXTS_SCHEMA_NAME)
+        query_properties = []
+        if search_in_body_part:
+            query_properties.append("body_part")
+        if search_in_file_name:
+            query_properties.append("file_name")
+
+        if len(query_properties) == 0:
+            raise ValueError("At least one property must be selected for lexical search.")
+        
+        res = collection.query.bm25(
+            query=query,
+            query_properties=query_properties,
+            limit=top_k,
+        )
+
+        results = self._create_agentic_texts_from_query_results(res)
+        return results
+    
+    def _find_images_relative_lexical_search(
+        self,
+        query: str,
+        top_k: int = 5,
+        search_in_image_name: bool = True,
+        search_in_file_name: bool = True,
+        search_in_body_part: bool = True,
+    ) -> list[PostgreImageBase]:
+        """
+        Perform a lexical search for `AgenticImages`s using a query string.
+        This searches in the image_name, file_name, body_part fields.
+
+        Args:
+            query (str): The search query string.
+            top_k (int, optional): The number of top results to return. Defaults to 5.
+            search_in_image_name (bool, optional): Whether to search in the image_name field. Defaults to True.
+            search_in_file_name (bool, optional): Whether to search in the file_name field. Defaults to True.
+            search_in_body_part (bool, optional): Whether to search in the body_part field. Defaults to True.
+
+        Returns:
+            list[PostgreImageBase]: A list of `AgenticImages` that match the search query.
+        """ 
+
+        collection = self._get_client().collections.get(AGENTIC_IMAGES_SCHEMA_NAME)
+        query_properties = []
+        if search_in_image_name:
+            query_properties.append("image_name")
+        if search_in_file_name:
+            query_properties.append("file_name")
+        if search_in_body_part:
+            query_properties.append("body_part")
+
+        if len(query_properties) == 0:
+            raise ValueError("At least one property must be selected for lexical search.")
+        
+        
+        res = collection.query.bm25(
+            query=query,
+            query_properties=query_properties,
+            return_properties=list(PostgreImageBase.model_fields.keys()),
+            limit=int(top_k),
+        )
+
+        results = self._create_agentic_images_from_query_results(res)
+        return results
+    
+    def get_image_record_internal_by_vector_id(
+            self, 
+            vector_id: str,
+            include_vector: bool | list[Literal["images_img", "images_description"]] = False,
+    ) -> PostgreImageBaseInternal:
+        """
+        Get a `PostgreImageBaseInternal` by its unique identifier.
+
+        Args:
+            vector_id (str): The unique identifier of the record in the VectorDB.
+
+        Returns:
+            `PostgreImageBaseInternal`: The `PostgreImageBaseInternal` object with the specified `vector_id`.
+        """
+
+        return_props = list(PostgreImageBase.model_fields.keys())
+        collection = self._get_client().collections.get(AGENTIC_IMAGES_SCHEMA_NAME)
+        res = collection.query.fetch_objects(
+            filters=Filter.by_property("vector_id").equal(vector_id),
+            return_properties=return_props,
+            include_vector=["images_img","images_description"] if include_vector is True else False,
+        )
+        if len(res.objects) == 0:
+            raise KeyError(f"No image record found with vector_id: {vector_id}")
+
+        res = self._create_agentic_images_from_query_results(res)
+        if not isinstance(res[0], PostgreImageBaseInternal):
+            raise ValueError(f"Image record with vector_id: {vector_id} does not contain vector data.")
+        return res[0]
+    
         
     @mlflow.trace(
         span_type=SpanType.TOOL,
@@ -494,7 +620,6 @@ class VectorDB(metaclass=SingletonMeta):
     def find_agentic_images_with_similar_image(                #m2m
         self,
         vector_id: str,
-        search_in_collections: list[str] | None = None,
         top_k: int = 5,
     ) -> list[AgenticImagesSemanticSearchResult]:
         """
@@ -502,19 +627,15 @@ class VectorDB(metaclass=SingletonMeta):
 
         Args:
             vector_id (str): The unique identifier of the image in the VectorDB.
-            search_in_collections (list[str], optional): Names of `FundusCollection`s to restrict the search. Defaults to None.
-            top_k (int, optional): Number of top results to return. Defaults to 10
+            top_k (int, optional): Number of top results to return. Defaults to 5
 
         Returns:
             list[AgenticImagesSemanticSearchResult]: `ImageSimilarity`s search results with similarity scores.
         """
-        record = self.get_agentic_image_internal_by_vector_id(vector_id)
-        image_embedding = self._agentic_ml_client.compute_image_embedding(
-            record.base64_image, return_tensor="np"
-        ).tolist()  # type: ignore
+        record = self.get_image_record_internal_by_vector_id(vector_id)
+        image_embedding = record.embeddings.get("images_img")
         results = self._agentic_images_img_similarity_search(
             image_embedding,
-            search_in_collections=search_in_collections,
             top_k=top_k,
         )
         return results
@@ -522,10 +643,9 @@ class VectorDB(metaclass=SingletonMeta):
     @mlflow.trace(
         span_type=SpanType.TOOL,
     )
-    def find_agentic_images_with_img_similar_to_the_text_query(                  #t2m
+    def find_similar_images_img_according_to_users_text_query(                  #t2m
         self,
         query:str,
-        search_in_collections: list[str] | None = None,
         top_k: int = 5,
     ) -> list[AgenticImagesSemanticSearchResult]:
         """
@@ -533,19 +653,17 @@ class VectorDB(metaclass=SingletonMeta):
 
         Args:
             query (str): The text query to find similar images for.
-            search_in_collections (list[str], optional): Names of `FundusCollection`s to restrict the search. Defaults to None.
-            top_k (int, optional): Number of top results to return. Defaults to 10
+            top_k (int, optional): Number of top results to return. Defaults to 5
 
         Returns:
             list[AgenticImagesSemanticSearchResult]: `ImageSimilarity`s search results with similarity scores.
         """
-        # query = self._query_rewriter.rewrite_user_query_for_cross_modal_text_to_image_search(query)
+        query = self._query_rewriter.rewrite_user_query_for_cross_modal_text_to_image_search(query)
         query_embedding = self._agentic_ml_client.compute_text_embedding(
             query, return_tensor="np"
         ).tolist()  # type: ignore
         results = self._agentic_images_img_similarity_search(
             query_embedding,
-            search_in_collections=search_in_collections,
             top_k=top_k,
         )
         return results
@@ -553,10 +671,9 @@ class VectorDB(metaclass=SingletonMeta):
     @mlflow.trace(
         span_type=SpanType.TOOL,
     )
-    def find_agentic_images_with_img_similar_to_user_image(          #m2m
+    def find_similar_images_img_according_to_users_image_query(          #m2m
         self,
         user_image_id: str,
-        search_in_collections: list[str] | None = None,
         top_k: int = 5,
     )-> list[AgenticImagesSemanticSearchResult]:
         """
@@ -566,20 +683,18 @@ class VectorDB(metaclass=SingletonMeta):
 
         Args:
             user_image_id (str): The unique identifier of the user-provided image.
-            search_in_collections (list[str], optional): Names of `FundusCollection`s to restrict the search. Defaults to None.
-            top_k (int, optional): Number of top results to return. Defaults to 10
+            top_k (int, optional): Number of top results to return. Defaults to 5
 
         Returns:
             list[AgenticImagesSemanticSearchResult]: `ImageSimilarity`s search results with similarity scores.
         """
-        # base64_user_image: str = self._user_image_store.load_user_image(user_image_id, base64=True)  # type: ignore
-        # base64_user_image = base64_user_image.split(",")[-1]
+        base64_user_image: str = self._user_image_store.load_user_image(user_image_id, base64=True)  # type: ignore
+        base64_user_image = base64_user_image.split(",")[-1]
         image_embedding = self._agentic_ml_client.compute_image_embedding(
             base64_image= base64_user_image, return_tensor="np" 
         ).tolist()  # type: ignore
         results = self._agentic_images_img_similarity_search(
             image_embedding,
-            search_in_collections=search_in_collections,
             top_k=top_k,
         )
         return results
@@ -587,10 +702,9 @@ class VectorDB(metaclass=SingletonMeta):
     @mlflow.trace(
         span_type=SpanType.TOOL,
     )
-    def find_agentic_images_with_description_similar_to_the_text_query(          #t2t
+    def find_similar_images_description_according_to_users_text_query(          #t2t
         self,
         query: str,
-        search_in_collections: list[str] | None = None,
         top_k: int = 5,
     ) -> list[AgenticImagesSemanticSearchResult]:
         """
@@ -601,8 +715,7 @@ class VectorDB(metaclass=SingletonMeta):
 
         Args:
             query (str): The text query to find similar image descriptions for.
-            search_in_collections (list[str], optional): Names of `FundusCollection`s to restrict the search. Defaults to None.
-            top_k (int, optional): Number of top results to return. Defaults to 10
+            top_k (int, optional): Number of top results to return. Defaults to 5
 
         Returns:
             list[AgenticImagesSemanticSearchResult]: `ImageSimilarity`s search results with similarity scores.
@@ -611,15 +724,380 @@ class VectorDB(metaclass=SingletonMeta):
         query_embedding = self._agentic_ml_client.compute_text_embedding(
             query, return_tensor="np"
         ).tolist()  # type: ignore
-        results = self._agentic_images_desc_similarity_search(
+        results = self._agentic_images_description_similarity_search(
             query_embedding,
-            search_in_collections=search_in_collections,
             top_k=top_k,
         )
         return results
     
     
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_similar_images_description_according_to_users_image_query(
+        self,
+        user_image_id: str,
+        top_k: int = 5,
+    ) -> list[AgenticImagesSemanticSearchResult]:
+        """
+        Find `ImageRecord`s with image descriptions similar to the user-provided image.
+        The uses cross-modal semantic similarity search based on description embeddings and image embeddings.
+        Use this only to search for imagesRecord based on the similarity between the user-provided image and the image descriptions in the database.
+        if you want to search for images record based on their images, use `find_agentic_images_with_similar_image` instead.
 
+        Args:
+            user_image_id (str): The unique identifier of the user-provided image.
+            top_k (int, optional): Number of top results to return. Defaults to 5
 
-
+        Returns:
+            list[AgenticImagesSemanticSearchResult]: `ImageSimilarity`s search results with similarity scores.
+        """
+        base64_user_image: str = self._user_image_store.load_user_image(user_image_id, base64=True)  # type: ignore
+        base64_user_image = base64_user_image.split(",")[-1]
+        image_embedding = self._agentic_ml_client.compute_image_embedding(
+            base64_image= base64_user_image, return_tensor="np" 
+        ).tolist()  # type: ignore
+        results = self._agentic_images_description_similarity_search(
+            image_embedding,
+            top_k=top_k,
+        )
+        return results
     
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_similar_texts_content_according_to_users_text_query(
+        self,
+        query: str,
+        top_k: int = 5,
+    ) -> list[AgenticTextsSemanticSearchResult]:
+        """
+        Find `TextRecord`s with text content similar to the text query.
+        The uses textual semantic similarity search based on text content embeddings.
+        Use this only to search for text records based on the similarity between the text query and the text content in the database.
+
+        Args:
+            query (str): The text query to find similar text content for.
+            top_k (int, optional): Number of top results to return. Defaults to 10
+
+        Returns:
+            list[AgenticTextsSemanticSearchResult]: `TextSimilarity`s search results with similarity scores.
+        """
+        query = self._query_rewriter.rewrite_user_query_for_text_to_text_search(query)
+        query_embedding = self._model.encode(query).tolist()
+        results = self._agentic_texts_similarity_search(
+            query_embedding,
+            target_vector="text_content",
+            top_k=top_k,
+        )
+        return results
+    
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_similar_texts_content_according_to_images_description(
+        self,
+        vector_id: str,
+        top_k: int = 5,
+    )-> list[AgenticTextsSemanticSearchResult]:
+        """
+        Find `TextRecord`s with text content similar to the description of the image with the given vector ID.
+
+        Args:
+            vector_id (str): The unique identifier of the image for which to find similar text content.
+            top_k (int, optional): Number of top results to return. Defaults to 5.
+
+        Returns:
+            list[AgenticTextsSemanticSearchResult]: `TextSimilarity`s search results with similarity scores.
+        """
+        record = self.get_image_record_internal_by_vector_id(vector_id)
+        query_embedding = self._model.encode(record.description).tolist()
+        result = self._agentic_texts_similarity_search(
+            query_embedding,
+            target_vector="text_content",
+            top_k=top_k,
+        )
+
+        return result
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_texts_content_relative_lexical_search(
+        self,
+        query: str,
+        *,
+        top_k: int = 5
+    ) -> list[PostgreText]:
+        """
+        Perform a lexical search for `AgenticTexts`s using a query string.
+        This searches in the character_name, body_part, file_name fields.
+
+        Args:
+            query (str): The search query string.
+            top_k (int, optional): The number of top results to return. Defaults to 10.
+
+        Returns:
+            list[PostgreText]: A list of `AgenticTexts` that match the search query.
+        """
+        results = self._find_texts_content_relative_lexical_search(
+            query=query,
+            top_k=int(top_k),
+            search_in_character_name=True,
+            search_in_body_part=True,
+            search_in_file_name=True,
+        )
+        return results
+    
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_images_relative_lexical_search(
+        self,
+        query: str,
+        *,
+        top_k: int = 5
+    ) -> list[PostgreImageBase]:
+        """
+        Perform a lexical search for `AgenticImages`s using a query string.
+        This searches in the image_name, body_part, file_name fields.
+
+        Args:
+            query (str): The search query string.
+            top_k (int, optional): The number of top results to return. Defaults to 5.
+
+        Returns:
+            list[PostgreImageBase]: A list of `PostgreImageBase` that match the search query.
+        """
+        results = self._find_images_relative_lexical_search(
+            query=query,
+            top_k=int(top_k),
+            search_in_image_name=True,
+            search_in_body_part=True,
+            search_in_file_name=True,
+        )
+        return results
+    
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def find_surrounding_chunks(
+        self,
+        vector_id:str,
+        window_size: int = 5,
+    ) -> list[PostgreText]:
+        """
+        Find surrounding text chunks of a given text chunk specified by its vector ID. This is useful for providing more context around a specific text chunk.  
+
+        Args:
+            vector_id (str): The unique identifier of the text chunk in the VectorDB.
+            window_size (int, optional): The number of surrounding chunks to retrieve on each side. Defaults to 5.
+        Returns:
+            list[PostgreText]: A list of `PostgreText` records representing the surrounding text chunks, ordered from the farthest previous chunk to the farthest next chunk.
+        """
+        results = self._find_surrounding_chunks(
+            vector_id=vector_id,
+            window_size=window_size,
+        )
+        return results
+    
+    def _find_surrounding_chunks(
+        self,
+        vector_id:str,
+        window_size: int = 5,
+    ) -> list[PostgreText]:
+        """
+        Find surrounding text chunks of a given text chunk specified by its vector ID. This is useful for providing more context around a specific text chunk.  
+
+        Args:
+            vector_id (str): The unique identifier of the text chunk in the VectorDB.
+            window_size (int, optional): The number of surrounding chunks to retrieve on each side. Defaults to 5. 
+
+        Returns:
+            list[PostgreText]: A list of `PostgreText` records representing the surrounding text chunks, ordered from the farthest previous chunk to the farthest next chunk.
+        """
+        collection = self._get_client().collections.get(AGENTIC_TEXTS_SCHEMA_NAME)
+        target_chunk = collection.query.fetch_objects(
+            filters=Filter.by_property("vector_id").equal(vector_id),
+            limit=1,
+        )
+        if target_chunk is None or len(target_chunk.objects) == 0:
+            raise ValueError(f"No text chunk found with vector ID: {vector_id}")
+        
+        target_chunk_props = target_chunk.objects[0].properties
+        chunk_index = target_chunk_props.get("chunk_index")
+        doc_id = target_chunk_props.get("doc_id")
+        if chunk_index is None or doc_id is None:
+            raise ValueError(
+                f"Missing chunk metadata for vector ID: {vector_id}. "
+                "Expected 'chunk_index' and 'doc_id'."
+            )
+
+        filter = Filter.all_of(
+            [
+                Filter.by_property("doc_id").equal(doc_id),
+                Filter.by_property("chunk_index").greater_or_equal(chunk_index - window_size),
+                Filter.by_property("chunk_index").less_or_equal(chunk_index + window_size),
+            ]
+        )
+
+        res = collection.query.fetch_objects(
+            filters=filter,
+            return_properties=list(PostgreText.model_fields.keys()),
+            limit= 2*window_size + 1,  # the target chunk itself + surrounding chunks on both sides
+        )
+
+        results = self._create_agentic_texts_from_query_results(res)
+
+        # sort the results by chunk_index
+        results.sort(key=lambda x: x.chunk_index)
+
+        return results
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def get_text_record_by_vector_id(
+        self,
+        vector_id: str,
+    ) -> PostgreText:
+        """
+        Retrieve the text record of a text chunk specified by its vector ID.
+
+        Args:
+            vector_id (str): The unique identifier of the text chunk in the VectorDB.
+
+        Returns:
+            PostgreText: The text record of the specified text chunk.
+        """
+        collection = self._get_client().collections.get(AGENTIC_TEXTS_SCHEMA_NAME)
+        target_chunk = collection.query.fetch_objects(
+            filters=Filter.by_property("vector_id").equal(vector_id),
+            limit=1,
+        )
+        if len(target_chunk.objects) == 0:
+            raise ValueError(f"No text chunk found with vector ID: {vector_id}")
+
+        results = self._create_agentic_texts_from_query_results(target_chunk)
+        
+        return results[0]
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def get_image_record_by_vector_id(
+        self,
+        vector_id: str,
+    ) -> PostgreImageBase:
+        """
+        Retrieve the image record of an image specified by its vector ID.
+
+        Args:
+            vector_id (str): The unique identifier of the image in the VectorDB.
+
+        Returns:
+            PostgreImageBase: The image record of the specified image.
+        """
+        collection = self._get_client().collections.get(AGENTIC_IMAGES_SCHEMA_NAME)
+        res = collection.query.fetch_objects(
+            filters=Filter.by_property("vector_id").equal(vector_id),
+            return_properties=list(PostgreImageBase.model_fields.keys()),
+            limit=1,
+        )
+        if len(res.objects) == 0:
+            raise ValueError(f"No image found with vector ID: {vector_id}")
+
+        results = self._create_agentic_images_from_query_results(res)
+        
+        return results[0]
+    
+    def get_base_image_by_vector_id(
+        self,
+        vector_id: str,
+    ) -> PostgreImage:
+        """
+        Retrieve the image record of an image specified by its vector ID.
+
+        Args:
+            vector_id (str): The unique identifier of the image in the VectorDB.
+
+        Returns:
+            PostgreImage: The image record of the specified image.
+        """
+        collection = self._get_client().collections.get(AGENTIC_IMAGES_SCHEMA_NAME)
+        res = collection.query.fetch_objects(
+            filters=Filter.by_property("vector_id").equal(vector_id),
+            return_properties=list(PostgreImage.model_fields.keys()),
+            limit=1,
+        )
+        if len(res.objects) == 0:
+            raise ValueError(f"No image found with vector ID: {vector_id}")
+
+        res_obj = res.objects[0]
+        props = res_obj.properties
+
+        image_record = PostgreImage(
+            image_id = props["postgre_id"],
+            vector_id = props["vector_id"],
+            image_name = props["image_name"],
+            page_number = props["page_number"],
+            image_index = props["image_index"],
+            image_path = props["image_path"],
+            file_name = props["file_name"],
+            description = props["description"],
+            body_part = props["body_part"],
+            base64_image=props["base64_image"]
+        )
+        
+        return image_record
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def list_all_body_parts(self) -> list[str]:
+        """
+        List all unique body parts mentioned in the database. This can be useful for understanding the coverage of the data and for providing options to users when they want to filter or search by body part.
+
+        Returns:
+            list[str]: A list of unique body parts mentioned in the database.
+        """
+        text_body_parts = self._texts_df["body_part"].unique().tolist()
+        image_body_parts = self._images_df["body_part"].unique().tolist()
+        body_parts = set(text_body_parts + image_body_parts)
+
+        return body_parts
+    
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def list_all_file_names(self) -> list[str]:
+        """
+        List all unique file names mentioned in the database. This can be useful for understanding the coverage of the data and for providing options to users when they want to filter or search by file name.
+
+        Returns:
+            list[str]: A list of unique file names mentioned in the database.
+        """
+        text_file_names = self._texts_df["file_name"].unique().tolist()
+        file_names = set(text_file_names)
+
+        return file_names
+
+    @mlflow.trace(
+        span_type=SpanType.TOOL,
+    )
+    def list_all_character_names_in_one_file(
+        self,
+        file_name: str,
+    ) -> list[str]:
+        """
+        List all unique character names mentioned in a specific file. This can be useful for understanding the coverage of the data in that file and for providing options to users when they want to filter or search by character name within that file.
+
+        Args:
+            file_name (str): The name of the file for which to list character names.
+
+        Returns:
+            list[str]: A list of unique character names mentioned in the specified file.
+        """
+        characters_in_file = self._texts_df[self._texts_df["file_name"] == file_name]["character_name"].unique().tolist()
+        return characters_in_file

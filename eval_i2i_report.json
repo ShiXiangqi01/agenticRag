@@ -1,0 +1,1902 @@
+{
+  "config": {
+    "mode": "external",
+    "query_dir": "/home/xiangqi/xiangqi/agenticRag",
+    "query_pattern": "Database/images/**/*",
+    "query_key": "relative_path_from_query_dir",
+    "qrels_csv": "/home/xiangqi/xiangqi/agenticRag/qrels_auto.csv",
+    "ground_truth_mode": "single_label",
+    "topk": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "query_limit": 0,
+    "sample_seed": 42,
+    "evaluated_queries": 78,
+    "skipped_no_label": 0
+  },
+  "metrics": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "Recall@10": 1.0,
+    "Precision@1": 1.0,
+    "MRR": 1.0
+  },
+  "per_query": [
+    {
+      "query": "Database/images/Essentials/Ch40/page_1_img_0.png",
+      "true_label": "3556a808-e50a-4ac6-b1c1-182016407f13",
+      "retrieved_ids": [
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "39469923-5d74-4026-a692-1331969d2f2b"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_1_img_1.png",
+      "true_label": "68410282-07eb-4854-9153-6977d819ba17",
+      "retrieved_ids": [
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "39469923-5d74-4026-a692-1331969d2f2b",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_1_img_2.png",
+      "true_label": "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+      "retrieved_ids": [
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "12da2007-446a-4f39-8fd5-0295e66863f6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_2_img_0.png",
+      "true_label": "49369409-9989-40c9-9b47-2e1b510e9803",
+      "retrieved_ids": [
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_2_img_1.png",
+      "true_label": "12da2007-446a-4f39-8fd5-0295e66863f6",
+      "retrieved_ids": [
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_2_img_2.png",
+      "true_label": "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+      "retrieved_ids": [
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "12da2007-446a-4f39-8fd5-0295e66863f6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_2_img_3.png",
+      "true_label": "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+      "retrieved_ids": [
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_3_img_0.png",
+      "true_label": "680fb634-f784-4349-9f59-632e3d0b624e",
+      "retrieved_ids": [
+        "680fb634-f784-4349-9f59-632e3d0b624e",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_5_img_0.png",
+      "true_label": "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+      "retrieved_ids": [
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "12da2007-446a-4f39-8fd5-0295e66863f6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_5_img_1.png",
+      "true_label": "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+      "retrieved_ids": [
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_5_img_2.png",
+      "true_label": "f1baeae1-6788-4d36-8b71-48be70f338cb",
+      "retrieved_ids": [
+        "f1baeae1-6788-4d36-8b71-48be70f338cb",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "e138da44-7c54-4895-8b9f-b2534f8f27c8",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "e60a7d6f-800c-4306-ad97-103f87a22e27",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_5_img_3.png",
+      "true_label": "c2f4e417-fb3e-4d81-a9b0-3e49ed9a5b4e",
+      "retrieved_ids": [
+        "c2f4e417-fb3e-4d81-a9b0-3e49ed9a5b4e",
+        "7b9ea4c7-f2d6-4d15-9f32-6361359eff71",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_5_img_4.png",
+      "true_label": "7b9ea4c7-f2d6-4d15-9f32-6361359eff71",
+      "retrieved_ids": [
+        "7b9ea4c7-f2d6-4d15-9f32-6361359eff71",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "c2f4e417-fb3e-4d81-a9b0-3e49ed9a5b4e",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_6_img_0.png",
+      "true_label": "e138da44-7c54-4895-8b9f-b2534f8f27c8",
+      "retrieved_ids": [
+        "e138da44-7c54-4895-8b9f-b2534f8f27c8",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "39469923-5d74-4026-a692-1331969d2f2b",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_6_img_1.png",
+      "true_label": "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+      "retrieved_ids": [
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "e138da44-7c54-4895-8b9f-b2534f8f27c8",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_6_img_2.png",
+      "true_label": "39469923-5d74-4026-a692-1331969d2f2b",
+      "retrieved_ids": [
+        "39469923-5d74-4026-a692-1331969d2f2b",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_6_img_3.png",
+      "true_label": "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+      "retrieved_ids": [
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_7_img_0.png",
+      "true_label": "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+      "retrieved_ids": [
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "e138da44-7c54-4895-8b9f-b2534f8f27c8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_7_img_1.png",
+      "true_label": "e60a7d6f-800c-4306-ad97-103f87a22e27",
+      "retrieved_ids": [
+        "e60a7d6f-800c-4306-ad97-103f87a22e27",
+        "aa628bcd-927c-47ad-a96f-fb73feacd8ad",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "12da2007-446a-4f39-8fd5-0295e66863f6",
+        "d06ed035-2cad-43c0-9291-a04b90dc8b09",
+        "e138da44-7c54-4895-8b9f-b2534f8f27c8",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "39469923-5d74-4026-a692-1331969d2f2b"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Essentials/Ch40/page_7_img_2.png",
+      "true_label": "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+      "retrieved_ids": [
+        "9303be73-7c4b-4b60-9454-e03bd88cabd3",
+        "d584eb13-f43a-4aee-bc06-c1b86c8f8a67",
+        "4ac98d00-45c9-4ef2-b9eb-392aeba07d65",
+        "68410282-07eb-4854-9153-6977d819ba17",
+        "3556a808-e50a-4ac6-b1c1-182016407f13",
+        "49369409-9989-40c9-9b47-2e1b510e9803",
+        "8e1064b7-7f16-4101-ad72-7608d10cf2a5",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf",
+        "7bf469b7-125b-4f38-ba74-a6033ab3d3dc"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_10_img_0.png",
+      "true_label": "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+      "retrieved_ids": [
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_10_img_1.png",
+      "true_label": "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+      "retrieved_ids": [
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "feba950b-cae9-4876-9773-2def3a3db3b0"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_10_img_2.png",
+      "true_label": "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+      "retrieved_ids": [
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_11_img_0.png",
+      "true_label": "2469b026-c920-41d9-afd2-e9de04b3cccd",
+      "retrieved_ids": [
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_11_img_1.png",
+      "true_label": "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+      "retrieved_ids": [
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_11_img_2.png",
+      "true_label": "865754ec-5bfc-4201-9ddb-4a436c271c51",
+      "retrieved_ids": [
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_13_img_0.png",
+      "true_label": "d6245a8c-8568-441f-88c3-d19e27301c5b",
+      "retrieved_ids": [
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "a5282f35-118e-48e5-8a28-08ae5895fe7e"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_13_img_1.png",
+      "true_label": "f47260ca-d65f-467b-9276-fae71ac06f52",
+      "retrieved_ids": [
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+        "b4e97f04-6842-49da-aedd-15a2c1d0fe76",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "a5282f35-118e-48e5-8a28-08ae5895fe7e"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_14_img_0.png",
+      "true_label": "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+      "retrieved_ids": [
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_14_img_1.png",
+      "true_label": "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+      "retrieved_ids": [
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_16_img_0.png",
+      "true_label": "b4e97f04-6842-49da-aedd-15a2c1d0fe76",
+      "retrieved_ids": [
+        "b4e97f04-6842-49da-aedd-15a2c1d0fe76",
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "70364b1f-d84f-4064-a554-f281ed3522a6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_16_img_1.png",
+      "true_label": "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+      "retrieved_ids": [
+        "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "b4e97f04-6842-49da-aedd-15a2c1d0fe76",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_17_img_0.png",
+      "true_label": "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+      "retrieved_ids": [
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_17_img_1.png",
+      "true_label": "24017920-43f2-4d1c-b712-3fd83959cdf3",
+      "retrieved_ids": [
+        "24017920-43f2-4d1c-b712-3fd83959cdf3",
+        "fc4967bf-d90a-4350-b698-80f05cd09c07",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_18_img_0.png",
+      "true_label": "fc4967bf-d90a-4350-b698-80f05cd09c07",
+      "retrieved_ids": [
+        "fc4967bf-d90a-4350-b698-80f05cd09c07",
+        "24017920-43f2-4d1c-b712-3fd83959cdf3",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_18_img_1.png",
+      "true_label": "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+      "retrieved_ids": [
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_1_img_0.png",
+      "true_label": "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+      "retrieved_ids": [
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_1_img_1.png",
+      "true_label": "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+      "retrieved_ids": [
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_21_img_0.png",
+      "true_label": "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+      "retrieved_ids": [
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "70364b1f-d84f-4064-a554-f281ed3522a6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_21_img_1.png",
+      "true_label": "bee125ea-11a0-4548-a740-27e12b05c661",
+      "retrieved_ids": [
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_22_img_0.png",
+      "true_label": "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+      "retrieved_ids": [
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "70364b1f-d84f-4064-a554-f281ed3522a6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_22_img_1.png",
+      "true_label": "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+      "retrieved_ids": [
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "7b9ea4c7-f2d6-4d15-9f32-6361359eff71"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_23_img_0.png",
+      "true_label": "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+      "retrieved_ids": [
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_23_img_1.png",
+      "true_label": "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+      "retrieved_ids": [
+        "1eeb28f7-c824-47bf-ab6d-a2baf5633249",
+        "bee125ea-11a0-4548-a740-27e12b05c661",
+        "9ae2350e-c42b-4b66-a5b5-5729b593c014",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "b0757bc8-c60c-45b3-9e3f-77289c301c1d",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_25_img_0.png",
+      "true_label": "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+      "retrieved_ids": [
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "3d403f4c-166c-47b5-be49-5a38184f6b7f",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "7b6bb3aa-78de-4f17-8c73-c673f890cf94",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_25_img_1.png",
+      "true_label": "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+      "retrieved_ids": [
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_28_img_0.png",
+      "true_label": "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+      "retrieved_ids": [
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_29_img_0.png",
+      "true_label": "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+      "retrieved_ids": [
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_29_img_1.png",
+      "true_label": "70364b1f-d84f-4064-a554-f281ed3522a6",
+      "retrieved_ids": [
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_2_img_0.png",
+      "true_label": "985220a3-353a-43b8-be90-3ae77d1befa7",
+      "retrieved_ids": [
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "fc4967bf-d90a-4350-b698-80f05cd09c07"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_31_img_0.png",
+      "true_label": "f656d36a-e700-494e-9ed4-39c7bb221c06",
+      "retrieved_ids": [
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "b4e97f04-6842-49da-aedd-15a2c1d0fe76",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "70364b1f-d84f-4064-a554-f281ed3522a6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_33_img_0.png",
+      "true_label": "e382d821-9d03-4864-abd2-68ec5e85a22d",
+      "retrieved_ids": [
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_33_img_1.png",
+      "true_label": "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+      "retrieved_ids": [
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_34_img_0.png",
+      "true_label": "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+      "retrieved_ids": [
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_35_img_0.png",
+      "true_label": "a5282f35-118e-48e5-8a28-08ae5895fe7e",
+      "retrieved_ids": [
+        "a5282f35-118e-48e5-8a28-08ae5895fe7e",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_37_img_0.png",
+      "true_label": "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+      "retrieved_ids": [
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "70364b1f-d84f-4064-a554-f281ed3522a6"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_37_img_1.png",
+      "true_label": "9d125e36-4259-4070-ba82-55400175956d",
+      "retrieved_ids": [
+        "9d125e36-4259-4070-ba82-55400175956d",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "f656d36a-e700-494e-9ed4-39c7bb221c06",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_38_img_0.png",
+      "true_label": "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+      "retrieved_ids": [
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "a5282f35-118e-48e5-8a28-08ae5895fe7e",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_38_img_1.png",
+      "true_label": "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513",
+      "retrieved_ids": [
+        "8c13fb78-c03f-4bd1-9e35-0f3e2c9e3513",
+        "2469b026-c920-41d9-afd2-e9de04b3cccd",
+        "0cc9fcfd-d1d5-4db5-a1e9-00500f2c5e19",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "b7d5f6a8-744a-46b5-90a8-065c6bad76bb",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec",
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_39_img_0.png",
+      "true_label": "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+      "retrieved_ids": [
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_3_img_0.png",
+      "true_label": "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+      "retrieved_ids": [
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_3_img_1.png",
+      "true_label": "9266b676-5b42-47af-b5b8-14499c2ede07",
+      "retrieved_ids": [
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "fc4967bf-d90a-4350-b698-80f05cd09c07"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_40_img_0.png",
+      "true_label": "191a8f99-41da-4ac0-8eed-1cd475569d46",
+      "retrieved_ids": [
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_40_img_1.png",
+      "true_label": "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+      "retrieved_ids": [
+        "36de8c35-1de8-4dec-b096-fbdb65fc2c96",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "b26d1552-e69b-49e7-8d4a-eaa992b123e7",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "89fdcc82-a01f-4dec-8c5e-9e674cd11eec"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_41_img_0.png",
+      "true_label": "feba950b-cae9-4876-9773-2def3a3db3b0",
+      "retrieved_ids": [
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "baf2f59d-0721-4fd5-8faf-1840257d6fc5",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_41_img_1.png",
+      "true_label": "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+      "retrieved_ids": [
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "70364b1f-d84f-4064-a554-f281ed3522a6",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "feba950b-cae9-4876-9773-2def3a3db3b0",
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_41_img_2.png",
+      "true_label": "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+      "retrieved_ids": [
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "c4019803-a9bc-4ff5-bc2c-539df8678a35",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "151c4645-bdf5-4568-a6c4-844f4ffe0538",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_42_img_0.png",
+      "true_label": "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+      "retrieved_ids": [
+        "a58ad6bc-d9ee-4cc2-ab26-dbdf8c32ea85",
+        "d0d73ca6-bf71-458f-a31e-52331d64d51b",
+        "e44622e1-5798-4b61-b3fd-c27e629c6dca",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "865754ec-5bfc-4201-9ddb-4a436c271c51",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46",
+        "bffc8c26-af05-4fc6-887e-779eddf4bba1",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48",
+        "feba950b-cae9-4876-9773-2def3a3db3b0"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_42_img_1.png",
+      "true_label": "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+      "retrieved_ids": [
+        "9cdfac69-da92-470f-a743-1ed5aa1cfb25",
+        "5e204e7a-dd55-4b25-988a-864ab6de17bb",
+        "a5282f35-118e-48e5-8a28-08ae5895fe7e",
+        "692a1b23-09aa-4a7f-9a2b-10d49c0e541b",
+        "5a3f0a3c-9394-482d-ace5-648c3b2b280e",
+        "28b5978b-dfb9-4716-81ad-4fafcf99c05f",
+        "e382d821-9d03-4864-abd2-68ec5e85a22d",
+        "d6245a8c-8568-441f-88c3-d19e27301c5b",
+        "f47260ca-d65f-467b-9276-fae71ac06f52",
+        "feba950b-cae9-4876-9773-2def3a3db3b0"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_4_img_0.png",
+      "true_label": "e62be251-a595-4548-8f00-a0194fc0caf5",
+      "retrieved_ids": [
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "95b6ff5d-6573-44dd-a38a-7ca353b93cbf"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_5_img_0.png",
+      "true_label": "bf8e4a32-b439-4731-8595-6f185bc70778",
+      "retrieved_ids": [
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "869dbbb1-0f4c-460c-9b50-03cfc61c9fa8"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_5_img_1.png",
+      "true_label": "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+      "retrieved_ids": [
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "fc4967bf-d90a-4350-b698-80f05cd09c07"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Muscle_testing/Knee/page_6_img_0.png",
+      "true_label": "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+      "retrieved_ids": [
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "bf8e4a32-b439-4731-8595-6f185bc70778",
+        "ba9482c1-887d-4a7e-8d68-31ff8cf71950",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "e5caa5a6-e073-4b3f-992f-7f7637f93ea3",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "8e23fe13-7e22-4d27-a2e8-e3d9bb60c7bd",
+        "e62be251-a595-4548-8f00-a0194fc0caf5",
+        "985220a3-353a-43b8-be90-3ae77d1befa7",
+        "060be97c-39cd-40da-860b-098b9c2c6663"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Stretching/Neck/page_1_img_0.jpeg",
+      "true_label": "060be97c-39cd-40da-860b-098b9c2c6663",
+      "retrieved_ids": [
+        "060be97c-39cd-40da-860b-098b9c2c6663",
+        "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+        "f1c7ded4-cb6b-47be-a891-37d99ce88c0d",
+        "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Stretching/Neck/page_2_img_0.png",
+      "true_label": "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+      "retrieved_ids": [
+        "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+        "060be97c-39cd-40da-860b-098b9c2c6663",
+        "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "f1c7ded4-cb6b-47be-a891-37d99ce88c0d",
+        "5be85d51-3ac8-443e-825f-636298986b89",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f",
+        "191a8f99-41da-4ac0-8eed-1cd475569d46"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Stretching/Neck/page_3_img_0.jpeg",
+      "true_label": "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+      "retrieved_ids": [
+        "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+        "5be85d51-3ac8-443e-825f-636298986b89",
+        "060be97c-39cd-40da-860b-098b9c2c6663",
+        "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+        "f1c7ded4-cb6b-47be-a891-37d99ce88c0d",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "c120c010-888e-40f1-a265-d22f7dc8ad2f"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Stretching/Neck/page_4_img_0.png",
+      "true_label": "5be85d51-3ac8-443e-825f-636298986b89",
+      "retrieved_ids": [
+        "5be85d51-3ac8-443e-825f-636298986b89",
+        "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+        "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+        "060be97c-39cd-40da-860b-098b9c2c6663",
+        "513177bf-1dbd-49d9-b1a7-48da1ed8dd5f",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "4a8b20a3-36d7-41b7-a4d8-5deadeae14df",
+        "e23cc957-cfdc-49d0-94ce-c65e56ca31ff",
+        "b4a4c86c-dd14-4665-9804-307d35f1f8b8",
+        "5e9a4f8f-858f-49a4-a0e8-f4f4c1c69b48"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "query": "Database/images/Stretching/Neck/page_5_img_0.png",
+      "true_label": "f1c7ded4-cb6b-47be-a891-37d99ce88c0d",
+      "retrieved_ids": [
+        "f1c7ded4-cb6b-47be-a891-37d99ce88c0d",
+        "060be97c-39cd-40da-860b-098b9c2c6663",
+        "4a8b4111-b872-44d9-a0db-afd8f51ead59",
+        "53fb42f6-9aef-47cc-acfe-cae8ab9a5767",
+        "833b1e9e-7a5e-4b06-91ed-66c78d322255",
+        "24017920-43f2-4d1c-b712-3fd83959cdf3",
+        "9266b676-5b42-47af-b5b8-14499c2ede07",
+        "23ec4684-3aac-48f8-8ef4-9ee400bf2c43",
+        "fc4967bf-d90a-4350-b698-80f05cd09c07",
+        "e62be251-a595-4548-8f00-a0194fc0caf5"
+      ],
+      "recall_by_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "precision_at_1": 1.0,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}
